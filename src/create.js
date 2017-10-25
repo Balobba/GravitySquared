@@ -5,6 +5,7 @@ function createState(game){
   //Groups
   game.playerGroup = game.add.group();
   game.boxGroup = game.add.group();
+  game.powerUpGroup = game.add.group();
 
   game.hud = game.add.sprite(0,0,'HUD');
   game.hud.width = hudWidth;
@@ -17,6 +18,7 @@ function createState(game){
   game.world.bringToTop(game.playerGroup);
   game.world.bringToTop(game.boxGroup);
   game.world.bringToTop(game.hud);
+  game.world.bringToTop(game.powerUpGroup);
 
   // create players
   // TODO do this more general
@@ -71,7 +73,7 @@ function createBox(game, x, y, name){
 function createPlayer(game, x, y, gravity, dir){
   var player = game.add.sprite(x, y, 'player' + game.playerGroup.length);
   game.physics.arcade.enable(player);
-  player.scale.setTo(0.9, 0.9);
+  player.scale.setTo(0.8, 0.8);
   player.speedConst = 1;
   player.baseSpeed = 200;
 

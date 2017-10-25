@@ -92,10 +92,30 @@ function generateBlock(game){
     }
   }
   for(var i = 0; i < game.lowerLevel; i++) {
-    createBox(game, game.width + 32,i*32, 'box');
+    createBox(game, game.width + 30,i*32, 'box');
   }
   for(var i = 0; i < game.upperLevel; i++) {
     createBox(game, game.width + 30,game.height-i*32-32, 'box');
+  }
+
+  var powerUpRand = Math.random();
+  if(powerUpRand < 0.02) {
+    var rand = Math.random();
+    var y = Math.ceil((game.height/32 - (game.upperLevel + game.lowerLevel))*Math.random() + game.lowerLevel);
+    var pu;
+    if(rand < 0.25) {
+      pu = game.add.sprite(game.width+30, y*32, 'tnt');
+    } else if (rand < 0.50) {
+      pu = game.add.sprite(game.width+30, y*32, 'swap');
+    } else if (rand < 0.75) {
+      pu = game.add.sprite(game.width+30, y*32, 'boost');
+    } else {
+      pu = game.add.sprite(game.width+30, y*32, 'shockwave');
+    }
+    pu.baseSpeed = -200;
+    pu.speedConst = -1;
+    game.physics.enable(pu);
+    game.powerUpGroup.add(pu);
   }
 }
 

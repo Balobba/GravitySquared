@@ -2,6 +2,7 @@ function updateState(game){
 
   checkGameOver(game);
 
+
   // update player
   game.playerGroup.forEach(function(p){
     p.body.velocity.x = p.baseSpeed + p.speedConst * game.tick;
@@ -34,6 +35,12 @@ function updateState(game){
     b.body.velocity.x = b.baseSpeed + b.speedConst*game.tick;
     if(b.body.x < hudWidth -32) {
       b.destroy();
+    }
+  });
+  game.powerUpGroup.forEach(function(p){
+    p.body.velocity.x = p.baseSpeed + p.speedConst*game.tick;
+    if(p.body.x < hudWidth -32) {
+      p.destroy();
     }
   });
 }
