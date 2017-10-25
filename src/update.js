@@ -1,5 +1,7 @@
 function updateState(game){
 
+  checkGameOver(game);
+
   // update player
   game.playerGroup.forEach(function(p){
     p.body.velocity.x = 200;
