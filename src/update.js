@@ -2,9 +2,14 @@ function updateState(game){
 
   checkGameOver(game);
 
-
   // update player
   game.playerGroup.forEach(function(p){
+    game.powerUpGroup.forEach(function(pu){
+      game.physics.arcade.collide(p,pu, function(){
+        p.powerup = pu.type;
+        pu.destroy();
+      });
+    });
     p.body.velocity.x = p.baseSpeed + p.speedConst * game.tick;
     setGravity(p);
     game.physics.arcade.collide(p, game.border);
@@ -22,12 +27,15 @@ function updateState(game){
       || p.body.y < -32 || p.body.y > game.height + 32) {
       p.keyG.onDown.removeAll();
       p.keyW.onDown.removeAll();
+      if(p.text)p.text.destroy();
+      if(p.icon)p.icon.destroy();
+      if(p.powerupIcon)p.powerupIcon.destroy();
       p.destroy();
     }
   });
 
   // check if new blocks needs to be generated
-  if(!game.lastBlock || game.lastBlock.body.x < game.width){
+  if(!game.lastBlock || game.lastBlock.body.x < game.width + 170){
     generateBlock(game);
   }
 
@@ -43,4 +51,25 @@ function updateState(game){
       p.destroy();
     }
   });
+    updateHud(game);
+}
+
+function updateHud(game) {
+    for(var i = 0; i < game.playerGroup.length; i++){
+        var p = game.playerGroup.getAt(i);
+        var name;
+        if(p.powerupIcon) p.powerupIcon.destroy();
+        if(p.powerup != null) {
+        if(p.powerup === powerupEnum.TNT) {
+            name = 'tnt';
+        } else if(p.powerup === powerupEnum.BOOST) {
+            name = 'boost';
+        } else if(p.powerup === powerupEnum.SHOCKWAVE) {
+            name = 'shockwave';
+        } else if(p.powerup === powerupEnum.SWAP) {
+            name = 'swap';
+        }
+        p.powerupIcon = game.add.sprite(16, p.hudY, name);
+        }
+    }
 }

@@ -76,6 +76,8 @@ function createPlayer(game, x, y, gravity, dir){
   player.scale.setTo(0.8, 0.8);
   player.speedConst = 1;
   player.baseSpeed = 200;
+  player.powerup = powerupEnum.TNT;
+  player.powerupIcon = null;
 
   player.body.gravity.y = gravity;
   player.body.friction.y = 0;
@@ -87,6 +89,7 @@ function createPlayer(game, x, y, gravity, dir){
   player.keyW = game.input.keyboard.addKey(keyBindings[game.playerGroup.length].w);
 
   player.keyG.onDown.add(function(){changeGravity(player)}, this);
+  player.keyW.onDown.add(function(){usePowerUp(game,player)}, this);
 
   game.playerGroup.add(player);
 

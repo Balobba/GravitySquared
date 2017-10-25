@@ -19,6 +19,13 @@ directionEnum = {
   DOWN : 1
 }
 
+powerupEnum = {
+  TNT : 0,
+  BOOST : 1,
+  SWAP : 2,
+  SHOCKWAVE : 3
+}
+
 function drawHud(game) {
   var style = { font: "16px Arial", fill: "#ffffff", align: "center", fontWeight: 'bold', stroke: '#000000', strokeThickness: 4 };
 
@@ -26,6 +33,7 @@ function drawHud(game) {
     var p = game.playerGroup.getAt(i); 
     p.text = game.add.text(1, 64 + i*128, 'player ' + i, style);
     p.icon = game.add.sprite(16, 100 + i*128, 'player' + i);
+    p.hudY = 144 + i * 128;
   }
 }
 
@@ -92,10 +100,10 @@ function generateBlock(game){
     }
   }
   for(var i = 0; i < game.lowerLevel; i++) {
-    createBox(game, game.width + 30,i*32, 'box');
+    createBox(game, game.width + 200,i*32, 'box');
   }
   for(var i = 0; i < game.upperLevel; i++) {
-    createBox(game, game.width + 30,game.height-i*32-32, 'box');
+    createBox(game, game.width + 200,game.height-i*32-32, 'box');
   }
 
   var powerUpRand = Math.random();
@@ -105,12 +113,16 @@ function generateBlock(game){
     var pu;
     if(rand < 0.25) {
       pu = game.add.sprite(game.width+30, y*32, 'tnt');
+      pu.type = powerupEnum.TNT;
     } else if (rand < 0.50) {
       pu = game.add.sprite(game.width+30, y*32, 'swap');
+      pu.type = powerupEnum.SWAP;
     } else if (rand < 0.75) {
       pu = game.add.sprite(game.width+30, y*32, 'boost');
+      pu.type = powerupEnum.BOOST;
     } else {
       pu = game.add.sprite(game.width+30, y*32, 'shockwave');
+      pu.type = powerupEnum.SHOCKWAVE;
     }
     pu.baseSpeed = -200;
     pu.speedConst = -1;
@@ -125,3 +137,30 @@ function gameOver(game) {
   game.state.restart();
 }
 
+function usePowerUp(game, player) {
+    if(player.powerup === powerupEnum.TNT) {
+        tnt(game,player.body.x, player.body.y);
+    } else if(player.powerup === powerupEnum.SWAP) {
+
+    } else if(player.powerup === powerupEnum.BOOST) {
+
+    } else if(player.powerup === powerupEnum.SHOCKWAVE) {
+
+    }
+    player.powerup = null;
+
+}
+
+function tnt(game,x, y) {
+    var hit = true; 
+    while(hit) {
+        hit = false;
+    game.boxGroup.forEach(function(b) {
+        var dist = Math.sqrt(Math.pow(x-b.body.x, 2) + Math.pow(y-b.body.y,2));
+        if (dist < 100) {
+            hit = true;
+            b.destroy();
+        }
+    });
+    }
+}
