@@ -22,5 +22,10 @@ directionEnum = {
   DOWN : 1
 }
 
+// placeholder function for game over
+function gameOver(game) {
+  game.state.restart();
+}
+
 var keyBindings = [{g:Phaser.Keyboard.SPACEBAR, w: Phaser.Keyboard.W},
   {g:Phaser.Keyboard.O, w: Phaser.Keyboard.P}, ]

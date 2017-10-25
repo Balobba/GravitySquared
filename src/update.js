@@ -1,4 +1,7 @@
 function updateState(game){
+  if(game.playerGroup.length <= 1 ) {
+   gameOver(game);
+  }
 
   game.playerGroup.forEach(function(p){
     p.body.velocity.x = 200;
