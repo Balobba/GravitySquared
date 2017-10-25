@@ -6,17 +6,24 @@ function createState(game){
   game.playerGroup = game.add.group();
   game.boxGroup = game.add.group();
 
+  game.hud = game.add.sprite(0,0,'HUD');
+  game.hud.width = hudWidth;
+
+  
   //background
   game.stage.backgroundColor = "#1FFFFF";
 
   // sort graphic in game
   game.world.bringToTop(game.playerGroup);
   game.world.bringToTop(game.boxGroup);
+  game.world.bringToTop(game.hud);
 
   // create players
   // TODO do this more general
   createPlayer(game, 100, 350, constGravity, directionEnum.DOWN);
   createPlayer(game, 464, 100, constGravity, directionEnum.UP);
+
+  drawHud(game);
 
   // Create the first boxes, the first screen
   // TODO do this more general or somewhere else

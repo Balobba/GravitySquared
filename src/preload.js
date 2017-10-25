@@ -9,5 +9,5 @@ function preloadState(game){
     game.load.image('player3', 'assets/player3.png');
     
     game.load.image('box', 'assets/box.png');
-    game.load.image('slope', 'assets/slope.png');
+    game.load.image('HUD', 'assets/HUD.png');
 }

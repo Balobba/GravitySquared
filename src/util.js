@@ -1,4 +1,5 @@
 var constGravity = 1000;
+var hudWidth = 64;
 
 /*
  * Keybindings for the players
@@ -12,6 +13,16 @@ var keyBindings = [{g:Phaser.Keyboard.SPACEBAR, w: Phaser.Keyboard.W},
 directionEnum = {
   UP : 0,
   DOWN : 1
+}
+
+function drawHud(game) {
+  var style = { font: "16px Arial", fill: "#ffffff", align: "center", fontWeight: 'bold', stroke: '#000000', strokeThickness: 4 };
+
+  for(var i = 0; i < game.playerGroup.length; i++) {
+    var p = game.playerGroup.getAt(i); 
+    p.text = game.add.text(1, 64 + i*128, 'player ' + i, style);
+    p.icon = game.add.sprite(16, 100 + i*128, 'player' + i);
+  }
 }
 
 /*

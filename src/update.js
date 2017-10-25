@@ -16,7 +16,7 @@ function updateState(game){
     });
 
     // remove player if outside world bounds
-    if(p.body.x < -32 || p.body.x > game.width + 32
+    if(p.body.x < hudWidth -32 || p.body.x > game.width + 32
       || p.body.y < -32 || p.body.y > game.height + 32) {
       p.keyG.onDown.removeAll();
       p.keyW.onDown.removeAll();
@@ -30,7 +30,7 @@ function updateState(game){
   }
 
   game.boxGroup.forEach(function(b){
-    if(b.body.x < -32) {
+    if(b.body.x < hudWidth -32) {
       b.destroy();
     }
   });
