@@ -25,6 +25,7 @@ function createState(game){
 
   }
 
+  game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
   game.keyF = game.input.keyboard.addKey(Phaser.Keyboard.F);
   game.keyF.onDown.add(function() {
     game.scale.startFullScreen(false);
