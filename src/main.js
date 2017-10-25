@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 400, Phaser.CANVAS, '');
+var game = new Phaser.Game(800, 600, Phaser.CANVAS, '');
 
 game.state.add('sandbox', state_sandbox);
 
