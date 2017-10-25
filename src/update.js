@@ -4,7 +4,7 @@ function updateState(game){
 
   // update player
   game.playerGroup.forEach(function(p){
-    p.body.velocity.x = 200;
+    p.body.velocity.x = p.baseSpeed + p.speedConst * game.tick;
     setGravity(p);
     game.physics.arcade.collide(p, game.border);
     p.collide = false;
@@ -31,6 +31,7 @@ function updateState(game){
   }
 
   game.boxGroup.forEach(function(b){
+    b.body.velocity.x = b.baseSpeed + b.speedConst*game.tick;
     if(b.body.x < hudWidth -32) {
       b.destroy();
     }

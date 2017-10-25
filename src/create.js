@@ -24,6 +24,9 @@ function createState(game){
     createPlayer(game, hudWidth + 10, 80+i*128, constGravity, Math.round(Math.random()));
 
   }
+  game.tick = 0;
+
+  game.time.events.loop(Phaser.Timer.SECOND * 0.3, function() {game.tick++;}, this);
 
   game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
   game.keyF = game.input.keyboard.addKey(Phaser.Keyboard.F);
@@ -58,7 +61,8 @@ function createBox(game, x, y, name){
   var box = game.add.sprite(x, y, name);
   game.physics.arcade.enable(box);
   box.body.immovable = true;
-  box.body.velocity.x = -200;
+  box.baseSpeed = -200;
+  box.speedConst = -1;
   box.body.friction.y = 0;
   game.lastBlock = box;
   game.boxGroup.add(box);
@@ -68,6 +72,8 @@ function createPlayer(game, x, y, gravity, dir){
   var player = game.add.sprite(x, y, 'player' + game.playerGroup.length);
   game.physics.arcade.enable(player);
   player.scale.setTo(0.9, 0.9);
+  player.speedConst = 1;
+  player.baseSpeed = 200;
 
   player.body.gravity.y = gravity;
   player.body.friction.y = 0;

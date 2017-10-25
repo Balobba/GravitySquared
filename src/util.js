@@ -4,8 +4,12 @@ var hudWidth = 64;
 /*
  * Keybindings for the players
  */
-var keyBindings = [{g:Phaser.Keyboard.SPACEBAR, w: Phaser.Keyboard.W},
-  {g:Phaser.Keyboard.O, w: Phaser.Keyboard.P}, ];
+var keyBindings = [
+  {g:Phaser.Keyboard.Q, w: Phaser.Keyboard.A},
+  {g:Phaser.Keyboard.P, w: Phaser.Keyboard.L}, 
+  {g:Phaser.Keyboard.N, w: Phaser.Keyboard.M},
+  {g:Phaser.Keyboard.C, w: Phaser.Keyboard.V}];
+
 
 /*
  * Enum for player directions
@@ -88,10 +92,10 @@ function generateBlock(game){
     }
   }
   for(var i = 0; i < game.lowerLevel; i++) {
-    createBox(game, 830,i*32, 'box');
+    createBox(game, game.width + 32,i*32, 'box');
   }
   for(var i = 0; i < game.upperLevel; i++) {
-    createBox(game, 830,game.height-i*32-32, 'box');
+    createBox(game, game.width + 30,game.height-i*32-32, 'box');
   }
 }
 

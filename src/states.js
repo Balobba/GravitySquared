@@ -3,7 +3,7 @@ var state_sandbox = {
     preloadState(game);
   },
   create: function() {
-    game.activePlayers = 2;
+    game.activePlayers = 4;
     createState(game);
   },
   update: function() {
