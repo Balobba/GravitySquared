@@ -21,6 +21,11 @@ function createState(game){
     createBox(game, 700-i*30,450, 'box');
   }
 
+  game.border = game.add.sprite(game.width,0);
+  game.border.enableBody = true;
+  game.physics.arcade.enable(game.border);
+  game.border.body.setSize(10,game.height, 0 ,0);
+  game.border.body.immovable = true;
   createBox(game, 500, 450-32, 'box');
 
 }
@@ -38,12 +43,13 @@ function createBox(game, x, y, name){
 
 function createPlayer(game, x, y, gravity, dir){
   var player = game.add.sprite(x, y, 'player');
+  player.tint = Math.random() * 0xffffff; 
   game.physics.arcade.enable(player, debug);
 
-  player.body.collideWorldBounds = true;
   player.body.gravity.y = gravity;
   player.body.friction.y = 0;
   player.dir = dir;
+
   setGravity(player);
 
   //key (spacebar)
