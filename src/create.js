@@ -20,8 +20,9 @@ function createState(game){
 
   // create players
   // TODO do this more general
-  createPlayer(game, 100, 350, constGravity, directionEnum.DOWN);
-  createPlayer(game, 464, 100, constGravity, directionEnum.UP);
+  for(var i = 0; i < game.activePlayers; i++){
+    createPlayer(game, hudWidth + 10, 80+i*128, constGravity, Math.round(Math.random()));
+  }
 
   drawHud(game);
 
