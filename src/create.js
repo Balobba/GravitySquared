@@ -59,6 +59,7 @@ function createBox(game, x, y, name){
 function createPlayer(game, x, y, gravity, dir){
   var player = game.add.sprite(x, y, 'player' + game.playerGroup.length);
   game.physics.arcade.enable(player);
+  player.scale.setTo(0.9, 0.9);
 
   player.body.gravity.y = gravity;
   player.body.friction.y = 0;

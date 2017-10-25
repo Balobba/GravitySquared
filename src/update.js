@@ -7,12 +7,13 @@ function updateState(game){
     p.body.velocity.x = 200;
     setGravity(p);
     game.physics.arcade.collide(p, game.border);
+    p.collide = false;
     game.boxGroup.forEach(function(b){
       game.physics.arcade.collide(p, b, function()
         {
-          p.body.gravity.y = 0;
+          p.body.gravity.y *= 0.001;
+          p.collide = true;
         });
-
     });
 
     // remove player if outside world bounds

@@ -29,11 +29,13 @@ function drawHud(game) {
  * Change direction of gravity on a player
  */
 function changeGravity(player){
-  player.dir++;
-  if(player.dir >= 2){
-    player.dir = 0;
+  if(player.collide){
+    player.dir++;
+    if(player.dir >= 2){
+      player.dir = 0;
+    }
+    setGravity(player);
   }
-  setGravity(player);
 }
 
 /*
