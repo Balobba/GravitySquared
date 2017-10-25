@@ -10,7 +10,7 @@ function updateState(game){
         pu.destroy();
       });
     });
-    p.body.velocity.x = p.baseSpeed + p.speedConst * game.tick;
+    updatePlayerSpeed(p);
     setGravity(p);
     game.physics.arcade.collide(p, game.border);
     p.collide = false;
@@ -51,25 +51,45 @@ function updateState(game){
       p.destroy();
     }
   });
-    updateHud(game);
+  updateHud(game);
 }
 
 function updateHud(game) {
-    for(var i = 0; i < game.playerGroup.length; i++){
-        var p = game.playerGroup.getAt(i);
-        var name;
-        if(p.powerupIcon) p.powerupIcon.destroy();
-        if(p.powerup != null) {
-        if(p.powerup === powerupEnum.TNT) {
-            name = 'tnt';
-        } else if(p.powerup === powerupEnum.BOOST) {
-            name = 'boost';
-        } else if(p.powerup === powerupEnum.SHOCKWAVE) {
-            name = 'shockwave';
-        } else if(p.powerup === powerupEnum.SWAP) {
-            name = 'swap';
-        }
-        p.powerupIcon = game.add.sprite(16, p.hudY, name);
-        }
+  for(var i = 0; i < game.playerGroup.length; i++){
+    var p = game.playerGroup.getAt(i);
+    var name;
+    if(p.powerupIcon) p.powerupIcon.destroy();
+    if(p.powerup != null) {
+      if(p.powerup === powerupEnum.TNT) {
+        name = 'tnt';
+      } else if(p.powerup === powerupEnum.BOOST) {
+        name = 'boost';
+      } else if(p.powerup === powerupEnum.SHOCKWAVE) {
+        name = 'shockwave';
+      } else if(p.powerup === powerupEnum.SWAP) {
+        name = 'swap';
+      }
+      p.powerupIcon = game.add.sprite(16, p.hudY, name);
     }
+  }
+}
+
+
+function updatePlayerSpeed(p) {
+  if(p.activeBoost) {
+    p.body.velocity.x = 800+p.baseSpeed + p.speedConst * game.tick;
+    p.boostDuration--;
+    if(p.boostDuration < 0){
+      p.activeBoost = false;
+    }
+  } else if(p.activeShockwave){
+    p.body.velocity.x = p.shockwaveX;
+    p.body.velocity.y = p.shockwaveY;
+    p.shockwaveDuration--;
+    if(p.shockwaveDuration < 0){
+      p.activeShockwave = false;
+    }
+  } else{
+    p.body.velocity.x = p.baseSpeed + p.speedConst * game.tick;
+  }
 }

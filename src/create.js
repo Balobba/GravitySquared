@@ -76,7 +76,7 @@ function createPlayer(game, x, y, gravity, dir){
   player.scale.setTo(0.8, 0.8);
   player.speedConst = 1;
   player.baseSpeed = 200;
-  player.powerup = powerupEnum.TNT;
+  player.powerup = null;
   player.powerupIcon = null;
 
   player.body.gravity.y = gravity;
@@ -88,7 +88,7 @@ function createPlayer(game, x, y, gravity, dir){
   player.keyG = game.input.keyboard.addKey(keyBindings[game.playerGroup.length].g);
   player.keyW = game.input.keyboard.addKey(keyBindings[game.playerGroup.length].w);
 
-  player.keyG.onDown.add(function(){changeGravity(player)}, this);
+  player.keyG.onDown.add(function(){changeGravity(player, true)}, this);
   player.keyW.onDown.add(function(){usePowerUp(game,player)}, this);
 
   game.playerGroup.add(player);
