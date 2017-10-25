@@ -13,7 +13,7 @@ function createState(game){
   game.world.bringToTop(game.playerGroup);
   game.world.bringToTop(game.boxGroup);
 
-  // create players 
+  // create players
   // TODO do this more general
   createPlayer(game, 100, 350, constGravity, directionEnum.DOWN);
   createPlayer(game, 464, 100, constGravity, directionEnum.UP);
@@ -50,8 +50,7 @@ function createBox(game, x, y, name){
 }
 
 function createPlayer(game, x, y, gravity, dir){
-  var player = game.add.sprite(x, y, 'player');
-  player.tint = Math.random() * 0xffffff; 
+  var player = game.add.sprite(x, y, 'player' + game.playerGroup.length);
   game.physics.arcade.enable(player);
 
   player.body.gravity.y = gravity;
