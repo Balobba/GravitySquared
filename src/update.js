@@ -1,7 +1,8 @@
 function updateState(game){
 
   game.playerGroup.forEach(function(p){
-    p.body.velocity.x = 210;
+    p.body.velocity.x = 200;
+    setGravity(p);
     game.physics.arcade.collide(p, game.border);
     game.boxGroup.forEach(function(b){
       game.physics.arcade.collide(p, b, function()
@@ -10,6 +11,8 @@ function updateState(game){
        });
 
     });
+
+    // remove player if outside world bounds
     if(p.body.x < -32 || p.body.x > game.width + 32
       || p.body.y < -32 || p.body.y > game.height + 32) {
       p.keyG.onDown.removeAll();
@@ -18,7 +21,7 @@ function updateState(game){
     }
   });
 
-    if(!game.lastBlock || game.lastBlock.body.x-4 < game.width){
+    if(!game.lastBlock || game.lastBlock.body.x < game.width){
       var randX = Math.random();
       var randY = Math.random();
       if(randX < 0.7) {

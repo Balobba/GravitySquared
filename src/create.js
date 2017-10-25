@@ -16,7 +16,7 @@ function createState(game){
   createPlayer(game, 100, 350, constGravity, directionEnum.DOWN);
   createPlayer(game, 464, 100, constGravity, directionEnum.UP);
 
-  for(var i = 0; i < game.width/32+5; i++) {
+  for(var i = 0; i < game.width/32+10; i++) {
     createBox(game, i*32,0, 'box');
     createBox(game, i*32,game.height-32, 'box');
   }
