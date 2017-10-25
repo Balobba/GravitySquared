@@ -9,7 +9,7 @@ function createState(game){
   game.hud = game.add.sprite(0,0,'HUD');
   game.hud.width = hudWidth;
 
-  
+
   //background
   game.stage.backgroundColor = "#1FFFFF";
 
@@ -22,7 +22,13 @@ function createState(game){
   // TODO do this more general
   for(var i = 0; i < game.activePlayers; i++){
     createPlayer(game, hudWidth + 10, 80+i*128, constGravity, Math.round(Math.random()));
+
   }
+
+  game.keyF = game.input.keyboard.addKey(Phaser.Keyboard.F);
+  game.keyF.onDown.add(function() {
+    game.scale.startFullScreen(false);
+  });
 
   drawHud(game);
 
