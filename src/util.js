@@ -169,12 +169,13 @@ function shockwave(game, player) {
 }
 
 function swap(game, player) {
-    var otherPlayer;
+    var swapCandidates = []; // find all other player that you can swap with
     game.playerGroup.forEach(function(p) {
         if(p !== player) {
-            otherPlayer = p;
+            swapCandidates.push(p);
         }
     });
+    var otherPlayer = swapCandidates[Math.floor(Math.random()*swapCandidates.length)]; // pick a random player to swap with
     var x = player.body.x;
     var y = player.body.y;
     player.x = otherPlayer.body.x;
