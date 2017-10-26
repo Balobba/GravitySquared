@@ -52,6 +52,7 @@ function updateState(game){
     }
   });
   updateHud(game);
+  sortGame(game);
 }
 
 function updateHud(game) {
@@ -70,6 +71,7 @@ function updateHud(game) {
         name = 'swap';
       }
       p.powerupIcon = game.add.sprite(16, p.hudY, name);
+      game.hudGroup.add(p.powerupIcon);
     }
   }
 }
@@ -92,4 +94,14 @@ function updatePlayerSpeed(p) {
   } else{
     p.body.velocity.x = p.baseSpeed + p.speedConst * game.tick;
   }
+}
+
+/*
+ * sort graphic in game
+ */
+function sortGame(game) {
+  game.world.bringToTop(game.playerGroup);
+  game.world.bringToTop(game.boxGroup);
+  game.world.bringToTop(game.powerUpGroup);
+  game.world.bringToTop(game.hudGroup);
 }

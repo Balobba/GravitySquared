@@ -8,19 +8,14 @@ function createState(game){
   game.playerGroup = game.add.group();
   game.boxGroup = game.add.group();
   game.powerUpGroup = game.add.group();
+  game.hudGroup = game.add.group();
 
-  game.hud = game.add.sprite(0,0,'HUD');
-  game.hud.width = hudWidth;
-
+  var hud = game.add.sprite(0,0,'HUD');
+  hud.width = hudWidth;
+  game.hudGroup.add(hud);
 
   //background
   game.stage.backgroundColor = "#1FFFFF";
-
-  // sort graphic in game
-  game.world.bringToTop(game.playerGroup);
-  game.world.bringToTop(game.boxGroup);
-  game.world.bringToTop(game.hud);
-  game.world.bringToTop(game.powerUpGroup);
 
   // create players
   // TODO do this more general
