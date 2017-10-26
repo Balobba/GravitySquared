@@ -1,7 +1,3 @@
-var constGravity = 2000;
-var hudWidth = 64;
-var blockSize = 32;
-var spawnOffset = 200;
 
 /*
  * Keybindings for the players
@@ -11,7 +7,6 @@ var keyBindings = [
   {g:Phaser.Keyboard.P, w: Phaser.Keyboard.L}, 
   {g:Phaser.Keyboard.N, w: Phaser.Keyboard.M},
   {g:Phaser.Keyboard.C, w: Phaser.Keyboard.V}];
-
 
 /*
  * Enum for player directions
@@ -68,14 +63,14 @@ function checkGameOver(game) {
 }
 
 /*
- * set gravity to constGravity on player
+ * set gravity to GRAVITY on player
  * uses direction
  */
 function setGravity(player){
   if(player.dir === directionEnum.UP){
-    player.body.gravity.y = -1*constGravity;
+    player.body.gravity.y = -GRAVITY;
   }else {
-    player.body.gravity.y = constGravity;
+    player.body.gravity.y = GRAVITY;
   }
 }
 
@@ -99,36 +94,36 @@ function generateBlock(game){
   } else {
     game.lowerLevel++;
   }
-  if(game.lowerLevel + game.upperLevel > game.height/blockSize - 2) {
+  if(game.lowerLevel + game.upperLevel > game.height/BLOCK_SIZE - 2) {
     if(game.upperLevel > game.lowerLevel) {
-      game.upperLevel -= (game.upperLevel + game.lowerLevel) - (game.height/blockSize - 2);
+      game.upperLevel -= (game.upperLevel + game.lowerLevel) - (game.height/BLOCK_SIZE - 2);
     } else {
-      game.lowerLevel -= (game.upperLevel + game.lowerLevel) - (game.height/blockSize - 2);
+      game.lowerLevel -= (game.upperLevel + game.lowerLevel) - (game.height/BLOCK_SIZE - 2);
     }
   }
   for(var i = 0; i < game.upperLevel; i++) {
-    createBox(game, game.width + spawnOffset,i*blockSize, 'box');
+    createBox(game, game.width + SPAWN_OFFSET,i*BLOCK_SIZE, 'box');
   }
   for(var i = 0; i < game.lowerLevel; i++) {
-    createBox(game, game.width + spawnOffset,game.height-i*blockSize-blockSize, 'box');
+    createBox(game, game.width + SPAWN_OFFSET,game.height-i*BLOCK_SIZE-BLOCK_SIZE, 'box');
   }
 
   var powerUpRand = Math.random();
   if(powerUpRand < 0.02) {
     var rand = Math.random();
-    var y = Math.floor((game.height/blockSize - (game.upperLevel + game.lowerLevel))*Math.random()) + game.upperLevel;
+    var y = Math.floor((game.height/BLOCK_SIZE - (game.upperLevel + game.lowerLevel))*Math.random()) + game.upperLevel;
     var pu;
     if(rand < 0.25) {
-      pu = game.add.sprite(game.width+spawnOffset, y*blockSize, 'tnt');
+      pu = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'tnt');
       pu.type = powerupEnum.TNT;
     } else if (rand < 0.50) {
-      pu = game.add.sprite(game.width+spawnOffset, y*blockSize, 'swap');
+      pu = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'swap');
       pu.type = powerupEnum.SWAP;
     } else if (rand < 0.75) {
-      pu = game.add.sprite(game.width+spawnOffset, y*blockSize, 'boost');
+      pu = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'boost');
       pu.type = powerupEnum.BOOST;
     } else {
-      pu = game.add.sprite(game.width+spawnOffset, y*blockSize, 'shockwave');
+      pu = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'shockwave');
       pu.type = powerupEnum.SHOCKWAVE;
     }
     pu.baseSpeed = -200;

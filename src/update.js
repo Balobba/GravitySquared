@@ -23,8 +23,8 @@ function updateState(game){
     });
 
     // remove player if outside world bounds
-    if(p.body.x < hudWidth -blockSize || p.body.x > game.width + blockSize
-      || p.body.y < -blockSize || p.body.y > game.height + blockSize) {
+    if(p.body.x < HUD_WIDTH -BLOCK_SIZE || p.body.x > game.width + BLOCK_SIZE
+      || p.body.y < -BLOCK_SIZE || p.body.y > game.height + BLOCK_SIZE) {
       p.keyG.onDown.removeAll();
       p.keyW.onDown.removeAll();
       if(p.text)p.text.destroy();
@@ -41,13 +41,13 @@ function updateState(game){
 
   game.boxGroup.forEach(function(b){
     b.body.velocity.x = b.baseSpeed + b.speedConst*game.tick;
-    if(b.body.x < hudWidth - blockSize) {
+    if(b.body.x < HUD_WIDTH - BLOCK_SIZE) {
       b.destroy();
     }
   });
   game.powerUpGroup.forEach(function(p){
     p.body.velocity.x = p.baseSpeed + p.speedConst*game.tick;
-    if(p.body.x < hudWidth - blockSize) {
+    if(p.body.x < HUD_WIDTH - BLOCK_SIZE) {
       p.destroy();
     }
   });

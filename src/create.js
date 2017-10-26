@@ -11,7 +11,7 @@ function createState(game){
   game.hudGroup = game.add.group();
 
   var hud = game.add.sprite(0,0,'HUD');
-  hud.width = hudWidth;
+  hud.width = HUD_WIDTH;
   game.hudGroup.add(hud);
 
   //background
@@ -20,7 +20,7 @@ function createState(game){
   // create players
   // TODO do this more general
   for(var i = 0; i < game.activePlayers; i++){
-    createPlayer(game, hudWidth + 10, 80+i*128, constGravity, Math.round(Math.random()));
+    createPlayer(game, HUD_WIDTH + 10, 80+i*128, GRAVITY, Math.round(Math.random()));
 
   }
   game.tick = 0;
@@ -37,9 +37,9 @@ function createState(game){
 
   // Create the first boxes, the first screen
   // TODO do this more general or somewhere else
-  for(var i = 0; i < game.width/blockSize+10; i++) {
-    createBox(game, i*blockSize,0, 'box');
-    createBox(game, i*blockSize,game.height-blockSize, 'box');
+  for(var i = 0; i < game.width/BLOCK_SIZE+10; i++) {
+    createBox(game, i*BLOCK_SIZE,0, 'box');
+    createBox(game, i*BLOCK_SIZE,game.height-BLOCK_SIZE, 'box');
   }
 
   // Border so player can collide with right wall
