@@ -3,8 +3,8 @@
  * Also generate powerup
  */
 function generateBlock(game){
-  generateLimit(game.upperLevel);
-  generateLimit(game.lowerLevel);
+  game.upperLevel = generateLimit(game.upperLevel);
+  game.lowerLevel = generateLimit(game.lowerLevel);
   adjustLimits(game);
   generateColumns(game);
   generatePowerup(game);
@@ -51,8 +51,9 @@ function generateLimit(limit){
     limit--;
     limit = Math.max(limit, 1);
   } else {
-    game.upperLevel++;
+    limit++;
   }
+  return limit;
 }
  
 /*
