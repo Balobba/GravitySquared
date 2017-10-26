@@ -1,4 +1,3 @@
-
 /*
  * Keybindings for the players
  */
@@ -16,6 +15,9 @@ directionEnum = {
   DOWN : 1
 }
 
+/*
+ * Enum for powerups
+ */
 powerupEnum = {
   TNT : 0,
   BOOST : 1,
@@ -133,12 +135,17 @@ function generateBlock(game){
   }
 }
 
-
-// placeholder function for game over
+/*
+ * Called when the game is over
+ */
 function gameOver(game) {
   game.state.restart();
 }
 
+/*
+ * Called when player press powerup button
+ * Perform powerup
+ */
 function usePowerUp(game, player) {
   if(player.powerup === powerupEnum.TNT) {
     tnt(game,player.body.x, player.body.y);
@@ -150,9 +157,11 @@ function usePowerUp(game, player) {
     shockwave(game,player);
   }
   player.powerup = null;
-
 }
 
+/*
+ * Shockwave powerup
+ */
 function shockwave(game, player) {
   game.playerGroup.forEach(function(p2) {
     if(p2 !== player){
@@ -169,45 +178,61 @@ function shockwave(game, player) {
   });
 }
 
+/*
+ * Swap powerup
+ */
 function swap(game, player) {
-  var swapCandidates = []; // find all other player that you can swap with
+
+  var swapCandidates = [];
+
+  // pick a random player to swap with
   game.playerGroup.forEach(function(p) {
     if(p !== player) {
       swapCandidates.push(p);
     }
   });
-  var otherPlayer = swapCandidates[Math.floor(Math.random()*swapCandidates.length)]; // pick a random player to swap with
+  var otherPlayer = swapCandidates[Math.floor(Math.random()*swapCandidates.length)]; 
+  
+  // Save player coords
   var x = player.body.x;
   var y = player.body.y;
+  
+  // Swap coordinates
   player.x = otherPlayer.body.x;
   player.y = otherPlayer.body.y;
   otherPlayer.x = x;
   otherPlayer.y = y;
+  
+  // Remove any velocity
   otherPlayer.body.gravity.y = 0;
   otherPlayer.body.velocity.x = 0;
   player.body.gravity.y = 0;
   player.body.velocity.x = 0;
+  
+  // Check if gravity needs to change
   if(player.dir !== otherPlayer.dir) {
     changeGravity(player, false);
     changeGravity(otherPlayer, false);
   }
-
-
 }
+
+/*
+ * Boost powerup
+ */
 function boost(game, player) {
   player.activeBoost = true;
   player.boostDuration = 50;
 }
+
+/*
+ * TNT powerup
+ */
 function tnt(game,x, y) {
-  var hit = true; 
-  while(hit) {
-    hit = false;
-    game.boxGroup.forEach(function(b) {
-      var dist = Math.sqrt(Math.pow(x-b.body.x, 2) + Math.pow(y-b.body.y,2));
-      if (dist < 100) {
-        hit = true;
-        b.destroy();
-      }
-    });
+  for(var i = game.boxGroup.length - 1; i >= 0; i--){
+    var b = game.boxGroup.getAt(i);
+    var dist = Math.sqrt(Math.pow(x-b.body.x, 2) + Math.pow(y-b.body.y,2));
+    if (dist < 100) {
+      b.destroy();
+    }
   }
 }
