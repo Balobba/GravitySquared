@@ -38,7 +38,6 @@ function updateState(game){
   if(!game.lastBlock || game.lastBlock.body.x < game.width + 170){
     generateBlock(game);
   }
-
   game.boxGroup.forEach(function(b){
     b.body.velocity.x = b.baseSpeed + b.speedConst*game.tick;
     if(b.body.x < HUD_WIDTH - BLOCK_SIZE) {

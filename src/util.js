@@ -77,65 +77,6 @@ function setGravity(player){
 }
 
 /*
- * Generate a new upper and lower block column
- */
-function generateBlock(game){
-  var randUp = Math.random();
-  var randLow = Math.random();
-  if(randUp < 0.7) {
-  } else if(randUp < 0.85){
-    game.upperLevel--;
-    game.upperLevel = Math.max(game.upperLevel, 1);
-  } else {
-    game.upperLevel++;
-  }
-  if(randLow < 0.7) {
-  } else if(randLow < 0.85){
-    game.lowerLevel--;
-    game.lowerLevel = Math.max(game.lowerLevel, 1);
-  } else {
-    game.lowerLevel++;
-  }
-  if(game.lowerLevel + game.upperLevel > game.height/BLOCK_SIZE - 2) {
-    if(game.upperLevel > game.lowerLevel) {
-      game.upperLevel -= (game.upperLevel + game.lowerLevel) - (game.height/BLOCK_SIZE - 2);
-    } else {
-      game.lowerLevel -= (game.upperLevel + game.lowerLevel) - (game.height/BLOCK_SIZE - 2);
-    }
-  }
-  for(var i = 0; i < game.upperLevel; i++) {
-    createBox(game, game.width + SPAWN_OFFSET,i*BLOCK_SIZE, 'box');
-  }
-  for(var i = 0; i < game.lowerLevel; i++) {
-    createBox(game, game.width + SPAWN_OFFSET,game.height-i*BLOCK_SIZE-BLOCK_SIZE, 'box');
-  }
-
-  var powerUpRand = Math.random();
-  if(powerUpRand < 0.02) {
-    var rand = Math.random();
-    var y = Math.floor((game.height/BLOCK_SIZE - (game.upperLevel + game.lowerLevel))*Math.random()) + game.upperLevel;
-    var pu;
-    if(rand < 0.25) {
-      pu = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'tnt');
-      pu.type = powerupEnum.TNT;
-    } else if (rand < 0.50) {
-      pu = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'swap');
-      pu.type = powerupEnum.SWAP;
-    } else if (rand < 0.75) {
-      pu = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'boost');
-      pu.type = powerupEnum.BOOST;
-    } else {
-      pu = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'shockwave');
-      pu.type = powerupEnum.SHOCKWAVE;
-    }
-    pu.baseSpeed = -200;
-    pu.speedConst = -1;
-    game.physics.enable(pu);
-    game.powerUpGroup.add(pu);
-  }
-}
-
-/*
  * Called when the game is over
  */
 function gameOver(game) {
