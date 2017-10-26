@@ -40,9 +40,9 @@ function createState(game){
 
   // Create the first boxes, the first screen
   // TODO do this more general or somewhere else
-  for(var i = 0; i < game.width/32+10; i++) {
-    createBox(game, i*32,0, 'box');
-    createBox(game, i*32,game.height-32, 'box');
+  for(var i = 0; i < game.width/blockSize+10; i++) {
+    createBox(game, i*blockSize,0, 'box');
+    createBox(game, i*blockSize,game.height-blockSize, 'box');
   }
 
   // Border so player can collide with right wall
@@ -55,7 +55,6 @@ function createState(game){
   // Used for knowing on which level the map is
   game.upperLevel = 1;
   game.lowerLevel = 1;
-
 }
 
 

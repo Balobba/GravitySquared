@@ -2,7 +2,7 @@ function updateState(game){
 
   checkGameOver(game);
 
-  // update player
+  // update each player
   game.playerGroup.forEach(function(p){
     game.powerUpGroup.forEach(function(pu){
       game.physics.arcade.collide(p,pu, function(){
@@ -23,8 +23,8 @@ function updateState(game){
     });
 
     // remove player if outside world bounds
-    if(p.body.x < hudWidth -32 || p.body.x > game.width + 32
-      || p.body.y < -32 || p.body.y > game.height + 32) {
+    if(p.body.x < hudWidth -blockSize || p.body.x > game.width + blockSize
+      || p.body.y < -blockSize || p.body.y > game.height + blockSize) {
       p.keyG.onDown.removeAll();
       p.keyW.onDown.removeAll();
       if(p.text)p.text.destroy();
@@ -41,13 +41,13 @@ function updateState(game){
 
   game.boxGroup.forEach(function(b){
     b.body.velocity.x = b.baseSpeed + b.speedConst*game.tick;
-    if(b.body.x < hudWidth -32) {
+    if(b.body.x < hudWidth - blockSize) {
       b.destroy();
     }
   });
   game.powerUpGroup.forEach(function(p){
     p.body.velocity.x = p.baseSpeed + p.speedConst*game.tick;
-    if(p.body.x < hudWidth -32) {
+    if(p.body.x < hudWidth - blockSize) {
       p.destroy();
     }
   });
