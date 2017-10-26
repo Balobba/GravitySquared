@@ -35,12 +35,7 @@ function createState(game){
 
   drawHud(game);
 
-  // Create the first boxes, the first screen
-  // TODO do this more general or somewhere else
-  for(var i = 0; i < game.width/BLOCK_SIZE+10; i++) {
-    createBox(game, i*BLOCK_SIZE,0, 'box');
-    createBox(game, i*BLOCK_SIZE,game.height-BLOCK_SIZE, 'box');
-  }
+  createStartBlocks(game);
 
   // Border so player can collide with right wall
   game.border = game.add.sprite(game.width,0);
@@ -54,6 +49,15 @@ function createState(game){
   game.lowerLevel = 1;
 }
 
+/*
+ * Create the first flat part of the world
+ */
+function createStartBlocks(game) {
+  for(var i = 0; i < game.width/BLOCK_SIZE+10; i++) {
+    createBox(game, i*BLOCK_SIZE,0, 'box');
+    createBox(game, i*BLOCK_SIZE,game.height-BLOCK_SIZE, 'box');
+  }
+}
 
 function createBox(game, x, y, name){
   var box = game.add.sprite(x, y, name);
