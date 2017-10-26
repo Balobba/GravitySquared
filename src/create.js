@@ -2,6 +2,8 @@ function createState(game){
   //Physics
   game.physics.startSystem(Phaser.Physics.ARCADE);
 
+  game.gameOver = false;
+
   //Groups
   game.playerGroup = game.add.group();
   game.boxGroup = game.add.group();
@@ -89,6 +91,7 @@ function createPlayer(game, x, y, gravity, dir){
 
   player.keyG.onDown.add(function(){changeGravity(player, true)}, this);
   player.keyW.onDown.add(function(){usePowerUp(game,player)}, this);
+  player.index = game.playerGroup.length;
 
   game.playerGroup.add(player);
 
