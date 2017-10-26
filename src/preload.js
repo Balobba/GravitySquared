@@ -9,6 +9,8 @@ function preloadState(game){
     game.load.image('boost_active', 'assets/powerup_boost_active.png');
     game.load.image('tnt_active', 'assets/powerup_tnt_active.png');
     game.load.image('shockwave_active', 'assets/powerup_shockwave_active.png');
+    game.load.image('swap_active_blue', 'assets/powerup_swap_active_blue.png');
+    game.load.image('swap_active_orange', 'assets/powerup_swap_active_orange.png');
 
     game.load.image('player0', 'assets/player0.png');
     game.load.image('player1', 'assets/player1.png');
