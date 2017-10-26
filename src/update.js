@@ -23,7 +23,7 @@ function updateState(game){
     });
 
 /*
- * Animation update 
+ * Animation update
  */
     game.animationGroup.forEach(function(a){
       a.body.velocity.x = a.baseSpeed + a.speedConst*game.tick;
@@ -92,6 +92,7 @@ function updatePlayerSpeed(p) {
     p.boostDuration--;
     if(p.boostDuration < 0){
       p.activeBoost = false;
+      p.getChildAt(0).destroy();
     }
   } else if(p.activeShockwave){
     p.body.velocity.x = p.shockwaveX;

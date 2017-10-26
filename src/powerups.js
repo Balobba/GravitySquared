@@ -1,7 +1,7 @@
 /*
- * Called when player press powerup button
- * Perform powerup
- */
+* Called when player press powerup button
+* Perform powerup
+*/
 function usePowerUp(game, player) {
   if(player.powerup === powerupEnum.TNT) {
     tnt(game,player.body.x, player.body.y);
@@ -17,8 +17,8 @@ function usePowerUp(game, player) {
 
 
 /*
- * TNT powerup
- */
+* TNT powerup
+*/
 function tnt(game,x, y) {
 
   var tnt = game.add.sprite(x, y, 'tnt_active');
@@ -42,17 +42,26 @@ function tnt(game,x, y) {
 
 
 /*
- * Boost powerup
- */
+* Boost powerup
+*/
 function boost(game, player) {
+
+  var boost = game.add.sprite(-96, 0, 'boost_active');
+  boost.animations.add('vroom', [0,1]);
+  boost.animations.play('vroom', 5, true, function(){tnt.destroy();});
+  game.physics.arcade.enable(boost);
+
+  player.addChild(boost);
+
+
   player.activeBoost = true;
   player.boostDuration = 50;
 }
 
 
 /*
- * Swap powerup
- */
+* Swap powerup
+*/
 function swap(game, player) {
 
   var swapCandidates = [];
@@ -89,8 +98,8 @@ function swap(game, player) {
 }
 
 /*
- * Shockwave powerup
- */
+* Shockwave powerup
+*/
 function shockwave(game, player) {
   game.playerGroup.forEach(function(p2) {
     if(p2 !== player){

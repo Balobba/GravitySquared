@@ -77,7 +77,7 @@ function createPlayer(game, x, y, gravity, dir){
   player.scale.setTo(0.8, 0.8);
   player.speedConst = 1;
   player.baseSpeed = 200;
-  player.powerup = null;
+  player.powerup = powerupEnum.BOOST; //CAN BE EDITED FOR TESTING PURPOSES
   player.powerupIcon = null;
 
   player.body.gravity.y = gravity;
