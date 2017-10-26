@@ -22,6 +22,16 @@ function updateState(game){
         });
     });
 
+/*
+ * Animation update 
+ */
+    game.animationGroup.forEach(function(a){
+      a.body.velocity.x = a.baseSpeed + a.speedConst*game.tick;
+      if(a.body.x < HUD_WIDTH - BLOCK_SIZE) {
+        a.destroy();
+      }
+    });
+
     // remove player if outside world bounds
     if(p.body.x < HUD_WIDTH -BLOCK_SIZE || p.body.x > game.width + BLOCK_SIZE
       || p.body.y < -BLOCK_SIZE || p.body.y > game.height + BLOCK_SIZE) {

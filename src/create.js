@@ -9,6 +9,7 @@ function createState(game){
   game.boxGroup = game.add.group();
   game.powerUpGroup = game.add.group();
   game.hudGroup = game.add.group();
+  game.animationGroup = game.add.group();
 
   var hud = game.add.sprite(0,0,'HUD');
   hud.width = HUD_WIDTH;

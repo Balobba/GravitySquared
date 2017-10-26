@@ -55,7 +55,7 @@ function generateLimit(limit){
   }
   return limit;
 }
- 
+
 /*
  * Adjust the limits
  * They can never be closer than 2 blocks

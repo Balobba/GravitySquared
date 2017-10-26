@@ -20,6 +20,17 @@ function usePowerUp(game, player) {
  * TNT powerup
  */
 function tnt(game,x, y) {
+
+  var tnt = game.add.sprite(x, y, 'tnt_active');
+  tnt.animations.add('boom', [0,1,2,3,4,5,6,7,8,9,10,11]);
+  tnt.animations.play('boom', 40, false, function(){tnt.destroy();});
+  game.physics.arcade.enable(tnt);
+  tnt.baseSpeed = -200;
+  tnt.speedConst = -1;
+  tnt.scale.setTo(1.5, 1.5);
+  tnt.anchor.setTo(0.5, 0.5);
+  game.animationGroup.add(tnt);
+
   for(var i = game.boxGroup.length - 1; i >= 0; i--){
     var b = game.boxGroup.getAt(i);
     var dist = Math.sqrt(Math.pow(x-b.body.x, 2) + Math.pow(y-b.body.y,2));
