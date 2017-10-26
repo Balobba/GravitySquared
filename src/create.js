@@ -20,8 +20,8 @@ function createState(game){
 
   // create players
   // TODO do this more general
-  for(var i = 0; i < game.activePlayers; i++){
-    createPlayer(game, HUD_WIDTH + 10, 80+i*128, GRAVITY, Math.round(Math.random()));
+  for(var i = 0; i < activePlayers; i++){
+    createPlayer(game, HUD_WIDTH + 10, 80+i*128, GRAVITY, Math.round(Math.random()), playerStat[i].imageIndex);
 
   }
   game.tick = 0;
@@ -71,8 +71,8 @@ function createBox(game, x, y, name){
   game.boxGroup.add(box);
 }
 
-function createPlayer(game, x, y, gravity, dir){
-  var player = game.add.sprite(x, y, 'player' + game.playerGroup.length);
+function createPlayer(game, x, y, gravity, dir, imageIndex){
+  var player = game.add.sprite(x, y, playerNames[imageIndex]);
   game.physics.arcade.enable(player);
   player.scale.setTo(0.8, 0.8);
   player.speedConst = 1;

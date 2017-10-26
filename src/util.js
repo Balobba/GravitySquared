@@ -31,7 +31,7 @@ function drawHud(game) {
   for(var i = 0; i < game.playerGroup.length; i++) {
     var p = game.playerGroup.getAt(i);
     p.text = game.add.text(1, 64 + i*128, 'Player ' + (i+1), style);
-    p.icon = game.add.sprite(16, 100 + i*128, 'player' + i);
+    p.icon = game.add.sprite(16, 100 + i*128, playerNames[playerStat[i].imageIndex]);
     p.hudY = 144 + i * 128;
     game.hudGroup.add(p.text);
     game.hudGroup.add(p.icon);
