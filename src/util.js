@@ -103,29 +103,29 @@ function generateBlock(game){
       game.lowerLevel -= (game.upperLevel + game.lowerLevel) - (game.height/blockSize - 2);
     }
   }
-  for(var i = 0; i < game.lowerLevel; i++) {
+  for(var i = 0; i < game.upperLevel; i++) {
     createBox(game, game.width + 200,i*blockSize, 'box');
   }
-  for(var i = 0; i < game.upperLevel; i++) {
+  for(var i = 0; i < game.lowerLevel; i++) {
     createBox(game, game.width + 200,game.height-i*blockSize-blockSize, 'box');
   }
 
   var powerUpRand = Math.random();
   if(powerUpRand < 0.02) {
     var rand = Math.random();
-    var y = Math.ceil((game.height/blockSize - (game.upperLevel + game.lowerLevel))*Math.random() + game.lowerLevel);
+    var y = Math.floor((game.height/blockSize - (game.upperLevel + game.lowerLevel))*Math.random()) + game.upperLevel;
     var pu;
     if(rand < 0.25) {
-      pu = game.add.sprite(game.width+30, y*blockSize, 'tnt');
+      pu = game.add.sprite(game.width+200, y*blockSize, 'tnt');
       pu.type = powerupEnum.TNT;
     } else if (rand < 0.50) {
-      pu = game.add.sprite(game.width+30, y*blockSize, 'swap');
+      pu = game.add.sprite(game.width+200, y*blockSize, 'swap');
       pu.type = powerupEnum.SWAP;
     } else if (rand < 0.75) {
-      pu = game.add.sprite(game.width+30, y*blockSize, 'boost');
+      pu = game.add.sprite(game.width+200, y*blockSize, 'boost');
       pu.type = powerupEnum.BOOST;
     } else {
-      pu = game.add.sprite(game.width+30, y*blockSize, 'shockwave');
+      pu = game.add.sprite(game.width+200, y*blockSize, 'shockwave');
       pu.type = powerupEnum.SHOCKWAVE;
     }
     pu.baseSpeed = -200;
