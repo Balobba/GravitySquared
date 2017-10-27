@@ -89,6 +89,7 @@ function updateHud(game) {
 function updatePlayerSpeed(p) {
   if(p.activeBoost) {
     p.body.velocity.x = 800+p.baseSpeed + p.speedConst * game.tick;
+    p.body.velocity.y = 0;
     p.boostDuration--;
     if(p.boostDuration < 0){
       p.activeBoost = false;
