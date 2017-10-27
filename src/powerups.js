@@ -111,7 +111,7 @@ function shockwave(game, player) {
       var angle = Math.atan2(player.body.x - p2.body.x,player.body.y - p2.body.y);
       if(dist < 200){
         p2.activeShockwave = true;
-        p2.shockwaveY = Math.cos(angle) * 1000;
+        p2.shockwaveY = -Math.cos(angle) * 1000;
         p2.shockwaveX = -Math.sin(angle) * 1000;
         p2.shockwaveDuration = 10;
       }
@@ -121,11 +121,60 @@ function shockwave(game, player) {
   shockwave.anchor.setTo(0.5, 0.5);
   shockwave.scale.setTo(4,4);
   shockwave.animations.add('blam', [0,1,2,3,4,5,6,7,8,9,10,11,12,13]);
-  shockwave.animations.play('blam', 200, false, function(){shockwave.destroy();});
+  shockwave.animations.play('blam', 160, false, function(){shockwave.destroy();});
   game.physics.arcade.enable(shockwave);
   shockwave.powerupType = powerupEnum.SHOCKWAVE;
 
   player.addChild(shockwave);
+}
 
+
+/*
+ * A random function that could generate a powerup
+ * uses upper and lower level to calculate position
+ */
+function generatePowerup(game) {
+  var powerUpRand = Math.random();
+  if(powerUpRand < 0.02) {
+    var rand = Math.random();
+    var y = Math.floor((game.height/BLOCK_SIZE - (game.upperLevel + game.lowerLevel))*Math.random()) + game.upperLevel;
+    var powerup;
+    if(rand < 0.25) {
+      powerup = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'tnt');
+      addTNTAnimation(game, powerup);
+    } else if (rand < 0.50) {
+      powerup = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'swap');
+      powerup.type = powerupEnum.SWAP;
+    } else if (rand < 0.75) {
+      powerup = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'boost');
+      addBoostAnimation(game, powerup);
+    } else {
+      powerup = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'shockwave');
+      addShockwaveAnimation(game, powerup);
+    }
+    powerup.baseSpeed = -200;
+    powerup.speedConst = -1;
+    game.physics.enable(powerup);
+    game.powerUpGroup.add(powerup);
+  }
+}
+
+function addTNTAnimation(game, powerup){
+  powerup.type = powerupEnum.TNT;
+  powerup.animations.add('tnt', [0,1]);
+  powerup.animations.play('tnt', 2, true);
+
+}
+
+function addShockwaveAnimation(game, powerup){
+  powerup.type = powerupEnum.SHOCKWAVE;
+  powerup.animations.add('shockwave', [0,1,2,3,4,5,6,7,8,9]);
+  powerup.animations.play('shockwave', 8, true);
+
+}
+function addBoostAnimation(game, powerup){
+  powerup.type = powerupEnum.BOOST;
+  powerup.animations.add('boost', [0,1,2,3,4,5]);
+  powerup.animations.play('boost', 8, true);
 
 }

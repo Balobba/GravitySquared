@@ -1,6 +1,5 @@
 /*
  * Generate a new upper and lower block column
- * Also generate powerup
  */
 function generateBlock(game){
   game.upperLevel = generateLimit(game.upperLevel);
@@ -10,35 +9,6 @@ function generateBlock(game){
   generatePowerup(game);
 }
 
-/*
- * A random function that could generate a powerup
- * uses upper and lower level to calculate position
- */
-function generatePowerup(game) {
-  var powerUpRand = Math.random();
-  if(powerUpRand < 0.02) {
-    var rand = Math.random();
-    var y = Math.floor((game.height/BLOCK_SIZE - (game.upperLevel + game.lowerLevel))*Math.random()) + game.upperLevel;
-    var powerup;
-    if(rand < 0.25) {
-      powerup = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'tnt');
-      powerup.type = powerupEnum.TNT;
-    } else if (rand < 0.50) {
-      powerup = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'swap');
-      powerup.type = powerupEnum.SWAP;
-    } else if (rand < 0.75) {
-      powerup = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'boost');
-      powerup.type = powerupEnum.BOOST;
-    } else {
-      powerup = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'shockwave');
-      powerup.type = powerupEnum.SHOCKWAVE;
-    }
-    powerup.baseSpeed = -200;
-    powerup.speedConst = -1;
-    game.physics.enable(powerup);
-    game.powerUpGroup.add(powerup);
-  }
-}
 
 /*
  * Take current level
