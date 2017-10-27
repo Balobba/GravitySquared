@@ -64,8 +64,8 @@ function createBox(game, x, y, name){
   var box = game.add.sprite(x, y, name);
   game.physics.arcade.enable(box);
   box.body.immovable = true;
-  box.baseSpeed = -200;
-  box.speedConst = -1;
+  box.baseSpeed = -200;//-200
+  box.speedConst = -1;//-1
   box.body.friction.y = 0;
   game.lastBlock = box;
   game.boxGroup.add(box);
@@ -75,8 +75,9 @@ function createPlayer(game, x, y, gravity, dir, imageIndex){
   var player = game.add.sprite(x, y, playerNames[imageIndex]);
   game.physics.arcade.enable(player);
   player.scale.setTo(0.8, 0.8);
-  player.speedConst = 1;
-  player.baseSpeed = 200;
+  player.anchor.setTo(0.5, 0.5);
+  player.speedConst = 1;//1
+  player.baseSpeed = 200;//200
   player.powerup = null; //CAN BE EDITED FOR TESTING PURPOSES
   player.powerupIcon = null;
 

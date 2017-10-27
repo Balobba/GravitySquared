@@ -48,9 +48,10 @@ function boost(game, player) {
 
   var boost = game.add.sprite(-96, 0, 'boost_active');
   boost.animations.add('vroom', [0,1]);
-  boost.animations.play('vroom', 5, true, function(){tnt.destroy();});
+  boost.animations.play('vroom', 5, true);
   game.physics.arcade.enable(boost);
   boost.powerupType = powerupEnum.BOOST;
+  boost.anchor.setTo(0.2,0.5);
 
   player.addChild(boost);
 
@@ -107,9 +108,8 @@ function shockwave(game, player) {
   game.playerGroup.forEach(function(p2) {
     if(p2 !== player){
       var dist = Math.sqrt(Math.pow(player.body.x-p2.body.x, 2) + Math.pow(player.body.y-p2.body.y,2));
-
       var angle = Math.atan2(player.body.x - p2.body.x,player.body.y - p2.body.y);
-      if(dist < 70){
+      if(dist < 200){
         p2.activeShockwave = true;
         p2.shockwaveY = Math.cos(angle) * 1000;
         p2.shockwaveX = -Math.sin(angle) * 1000;
@@ -117,4 +117,15 @@ function shockwave(game, player) {
       }
     }
   });
+  var shockwave = game.add.sprite(0, 0, 'shockwave_active');
+  shockwave.anchor.setTo(0.5, 0.5);
+  shockwave.scale.setTo(4,4);
+  shockwave.animations.add('blam', [0,1,2,3,4,5,6,7,8]);
+  shockwave.animations.play('blam', 200, false, function(){shockwave.destroy();});
+  game.physics.arcade.enable(shockwave);
+  shockwave.powerupType = powerupEnum.SHOCKWAVE;
+
+  player.addChild(shockwave);
+
+
 }
