@@ -50,6 +50,7 @@ function boost(game, player) {
   boost.animations.add('vroom', [0,1]);
   boost.animations.play('vroom', 5, true, function(){tnt.destroy();});
   game.physics.arcade.enable(boost);
+  boost.powerupType = powerupEnum.BOOST;
 
   player.addChild(boost);
 

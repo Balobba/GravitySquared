@@ -92,7 +92,13 @@ function updatePlayerSpeed(p) {
     p.boostDuration--;
     if(p.boostDuration < 0){
       p.activeBoost = false;
-      p.getChildAt(0).destroy();
+      for(var i = p.children.length - 1; i >= 0; i--) {
+        var c = p.children[i];
+        if(c.powerupType == powerupEnum.BOOST){
+          c.destroy();
+        }
+
+    }
     }
   } else if(p.activeShockwave){
     p.body.velocity.x = p.shockwaveX;
