@@ -16,7 +16,7 @@ function preloadImages(game){
   game.load.image('player2', 'assets/player2.png');
   game.load.image('player3', 'assets/player3.png');
 
-  game.load.image('box', 'assets/box.png');
+  game.load.image('cloud', 'assets/cloud.png');
   game.load.image('HUD', 'assets/HUD.png');
 
 /*
@@ -35,5 +35,6 @@ game.load.spritesheet('swap_active_blue', 'assets/powerup_swap_active_blue.png',
 game.load.spritesheet('swap_active_orange', 'assets/powerup_swap_active_orange.png',96, 96, 7);
 
 game.load.spritesheet('pickup', 'assets/powerup_pickup.png', 96, 96, 5);
+game.load.spritesheet('building', 'assets/building.png', 96, 96, 5);
 
 }

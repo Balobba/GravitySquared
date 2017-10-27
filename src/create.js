@@ -16,7 +16,8 @@ function createState(game){
   game.hudGroup.add(hud);
 
   //background
-  game.stage.backgroundColor = "#1FFFFF"; //Needs to be replaced with image later!
+  game.stage.backgroundColor = "#7443B6"; //Needs to be replaced with image later!
+
 
   // create players
   // TODO do this more general
@@ -55,8 +56,8 @@ function createState(game){
  */
 function createStartBlocks(game) {
   for(var i = 0; i < game.width/BLOCK_SIZE+10; i++) {
-    createBox(game, i*BLOCK_SIZE,0, 'box');
-    createBox(game, i*BLOCK_SIZE,game.height-BLOCK_SIZE, 'box');
+    createBox(game, i*BLOCK_SIZE,0, 'cloud');
+    createBox(game, i*BLOCK_SIZE,game.height-BLOCK_SIZE, 'building');
   }
 }
 
@@ -76,8 +77,8 @@ function createPlayer(game, x, y, gravity, dir, imageIndex){
   game.physics.arcade.enable(player);
   player.scale.setTo(0.8, 0.8);
   player.anchor.setTo(0.5, 0.5);
-  player.speedConst = 1;//1
-  player.baseSpeed = 200;//200
+  player.speedConst = 1;
+  player.baseSpeed = 200;
   player.powerup = null; //CAN BE EDITED FOR TESTING PURPOSES
   player.powerupIcon = null;
 

@@ -8,7 +8,7 @@ function menustart_preload(game){
   game.load.image('player3', 'assets/player3.png');
 
   // placeholder for buttons
-  game.load.image('box', 'assets/box.png');
+  game.load.image('button', 'assets/button.png');
 }
 
 /*
@@ -16,7 +16,7 @@ function menustart_preload(game){
  */
 function menustart_create(game){
   // set background color
-  game.stage.backgroundColor = "#1FFFFF";
+  game.stage.backgroundColor = "#7443B6";
 
   game.players = [];
 
@@ -29,22 +29,26 @@ function menustart_create(game){
   game.playerText = game.add.text(30, 45, 'Players: ' + activePlayers, game.styleTitle);
   
   // Button to add one player
-  game.playersAdd = game.add.button(200, 30, 'box'
+  game.playersAdd = game.add.button(210, 46, 'button'
     , function() {
       if(activePlayers < MAX_PLAYERS){
         activePlayers++;
         addPlayer(game,activePlayers-1);
       }
     }, this, 2, 1, 0);
+  game.playersAdd.anchor.setTo(0.5, 0.5);
+  game.playersAdd.angle = 270;
 
   // Button to remove one player
-  game.playersSub = game.add.button(200, 70, 'box'
+  game.playersSub = game.add.button(210, 86, 'button'
     , function() {
       if(activePlayers > MIN_PLAYERS) {
         activePlayers--;
         removePlayer(game);
       }
     }, this, 2, 1, 0);
+  game.playersSub.anchor.setTo(0.5, 0.5);
+  game.playersSub.angle = 90;
 
   // Init players
   for(var i = 0; i < activePlayers; i++){
@@ -52,7 +56,7 @@ function menustart_create(game){
   }
 
   // Start game button
-  game.start =  game.add.button(game.width/2, game.height - 60, 'box'
+  game.start =  game.add.button(game.width/2, game.height - 60, 'button'
     , function() {
       game.state.start('sandbox');
 
@@ -68,23 +72,27 @@ function addPlayer(game, index) {
   var stat = playerStat[index];
 
   // Button to change image
-  player.buttonDown = game.add.button(stat.coords.x - 40, stat.coords.y, 'box'
+  player.buttonDown = game.add.button(stat.coords.x - 40, stat.coords.y, 'button'
     , function() {
       stat.imageIndex--;
       stat.imageIndex = Math.max(stat.imageIndex, 0);
       player.icon.loadTexture(playerNames[stat.imageIndex]);
     }, this, 2, 1, 0);
+  player.buttonDown.anchor.setTo(0.5, 0.5);
+  player.buttonDown.angle = 180;
 
   // Button to change image
-  player.buttonUp = game.add.button(stat.coords.x + 40, stat.coords.y, 'box'
+  player.buttonUp = game.add.button(stat.coords.x + 40, stat.coords.y, 'button'
     , function() {
       stat.imageIndex++;
       stat.imageIndex = Math.min(stat.imageIndex, 3);
       player.icon.loadTexture(playerNames[stat.imageIndex]);
     }, this, 2, 1, 0);
+  player.buttonUp.anchor.setTo(0.5, 0.5);
   
   // Display the image of choice
   player.icon = game.add.sprite(stat.coords.x , stat.coords.y, playerNames[stat.imageIndex]);
+  player.icon.anchor.setTo(0.5, 0.5);
 
   game.players.push(player);
 }
