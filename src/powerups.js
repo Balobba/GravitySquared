@@ -88,8 +88,10 @@ function swap(game, player) {
   // Remove any velocity
   otherPlayer.body.gravity.y = 0;
   otherPlayer.body.velocity.x = 0;
+  otherPlayer.body.velocity.y = 0;
   player.body.gravity.y = 0;
   player.body.velocity.x = 0;
+  player.body.velocity.y = 0;
 
   // Check if gravity needs to change
   if(player.dir !== otherPlayer.dir) {
