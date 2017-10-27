@@ -120,7 +120,7 @@ function shockwave(game, player) {
   var shockwave = game.add.sprite(0, 0, 'shockwave_active');
   shockwave.anchor.setTo(0.5, 0.5);
   shockwave.scale.setTo(4,4);
-  shockwave.animations.add('blam', [0,1,2,3,4,5,6,7,8]);
+  shockwave.animations.add('blam', [0,1,2,3,4,5,6,7,8,9,10,11,12,13]);
   shockwave.animations.play('blam', 200, false, function(){shockwave.destroy();});
   game.physics.arcade.enable(shockwave);
   shockwave.powerupType = powerupEnum.SHOCKWAVE;
