@@ -23,6 +23,8 @@ var playerStat = [
     imageIndex: 3
   }];
 game.state.add('sandbox', state_sandbox);
+game.state.add('menu_startscreen', state_startscreen);
 game.state.add('menu_startgame', state_menu_startgame);
 
-game.state.start('menu_startgame');
+
+game.state.start('menu_startscreen');

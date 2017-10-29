@@ -1,7 +1,7 @@
 var state_sandbox = {
   preload: function() {
     preloadState(game);
-    
+
   },
   create: function() {
     createState(game);
@@ -24,6 +24,22 @@ var state_menu_startgame = {
   },
   update: function() {
     menustart_update(game);
+  },
+  shutdown: function() {
+  },
+  render: function () {
+  }
+};
+
+var state_startscreen = {
+  preload: function() {
+    menuscreen_preload(game);
+  },
+  create: function() {
+    menuscreen_create(game);
+  },
+  update: function() {
+    menuscreen_update(game);
   },
   shutdown: function() {
   },
