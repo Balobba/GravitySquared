@@ -7,6 +7,7 @@ function updateState(game){
     game.powerUpGroup.forEach(function(pu){
       game.physics.arcade.collide(p,pu, function(){
         p.powerup = pu.type;
+        pickUpItemAnimaton(game, p);
         pu.destroy();
       });
     });
@@ -84,6 +85,22 @@ function updateHud(game) {
     }
   }
 }
+
+
+function pickUpItemAnimaton(game, player){
+
+  var itemPickup = game.add.sprite(player.body.x, player.body.y, 'pickup');
+  itemPickup.animations.add('pickupanim', [0,1,2,3,4]);
+  itemPickup.animations.play('pickupanim', 20, false);
+  itemPickup.animations.currentAnim.onComplete.add(function(){itemPickup.destroy();}, this);
+  game.physics.arcade.enable(itemPickup);
+  itemPickup.baseSpeed = -200;
+  itemPickup.speedConst = -1;
+  itemPickup.scale.setTo(1.5, 1.5);
+  itemPickup.anchor.setTo(0.5, 0.5);
+  game.powerUpGroup.add(itemPickup);
+}
+
 
 
 function updatePlayerSpeed(p) {
