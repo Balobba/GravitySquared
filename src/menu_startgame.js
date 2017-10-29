@@ -10,8 +10,6 @@ function menustart_preload(game){
   game.load.image('player5', 'assets/player5.png');
   game.load.image('player6', 'assets/player6.png');
   game.load.image('player7', 'assets/player7.png');
-  game.load.image('player8', 'assets/player8.png');
-  game.load.image('player9', 'assets/player9.png');
 
   // placeholder for buttons
   game.load.image('button', 'assets/button.png');

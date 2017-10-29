@@ -15,8 +15,6 @@ function preloadImages(game){
   game.load.image('player5', 'assets/player5.png');
   game.load.image('player6', 'assets/player6.png');
   game.load.image('player7', 'assets/player7.png');
-  game.load.image('player8', 'assets/player8.png');
-  game.load.image('player9', 'assets/player9.png');
 
   game.load.image('cloud', 'assets/cloud.png');
   game.load.image('HUD', 'assets/HUD.png');

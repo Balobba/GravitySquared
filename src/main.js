@@ -2,7 +2,7 @@ var game = new Phaser.Game(1120, 608, Phaser.CANVAS, '');
 var activePlayers = 2;
 
 // to be able to loop over all images
-var playerNames = ['player0','player1','player2','player3','player4','player5','player6','player7','player8','player9'];
+var playerNames = ['player0','player1','player2','player3','player4','player5','player6','player7'];
 
 var playerStat = [
   {
