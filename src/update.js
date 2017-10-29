@@ -41,6 +41,7 @@ function updateState(game){
       if(p.text)p.text.destroy();
       if(p.icon)p.icon.destroy();
       if(p.powerupIcon)p.powerupIcon.destroy();
+      deathAnimaton(game, p);
       p.destroy();
     }
   });
@@ -99,6 +100,17 @@ function pickUpItemAnimaton(game, player){
   itemPickup.scale.setTo(1.5, 1.5);
   itemPickup.anchor.setTo(0.5, 0.5);
   game.powerUpGroup.add(itemPickup);
+}
+
+function deathAnimaton(game, player){
+
+  var deathAnimation = game.add.sprite(player.body.x+BLOCK_SIZE*2, player.body.y, 'death');
+  deathAnimation.animations.add('deathanim', [0,1,2,3,4]);
+  deathAnimation.animations.play('deathanim', 20, false);
+  deathAnimation.animations.currentAnim.onComplete.add(function(){deathAnimation.destroy();}, this);
+  game.physics.arcade.enable(deathAnimation);
+  deathAnimation.scale.setTo(4, 4);
+  deathAnimation.anchor.setTo(0.5, 0.5);
 }
 
 

@@ -40,5 +40,6 @@ game.load.spritesheet('swap_active_pink', 'assets/powerup_swap_active_pink.png',
 
 game.load.spritesheet('pickup', 'assets/powerup_pickup.png', 96, 96, 5);
 game.load.spritesheet('building', 'assets/building.png', 32, 32, 5);
+game.load.spritesheet('death', 'assets/deathanimation.png', 96, 96, 5);
 
 }
