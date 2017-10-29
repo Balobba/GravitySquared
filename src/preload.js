@@ -38,6 +38,6 @@ game.load.spritesheet('swap_active_blue', 'assets/powerup_swap_active_blue.png',
 game.load.spritesheet('swap_active_orange', 'assets/powerup_swap_active_orange.png',96, 96, 7);
 
 game.load.spritesheet('pickup', 'assets/powerup_pickup.png', 96, 96, 5);
-game.load.spritesheet('building', 'assets/building.png', 96, 96, 5);
+game.load.spritesheet('building', 'assets/building.png', 32, 32, 5);
 
 }

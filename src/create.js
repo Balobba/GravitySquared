@@ -56,13 +56,21 @@ function createState(game){
  */
 function createStartBlocks(game) {
   for(var i = 0; i < game.width/BLOCK_SIZE+10; i++) {
-    createBox(game, i*BLOCK_SIZE,0, 'cloud');
-    createBox(game, i*BLOCK_SIZE,game.height-BLOCK_SIZE, 'building');
+    createBox(game, i*BLOCK_SIZE,0, false);
+    createBox(game, i*BLOCK_SIZE,game.height-BLOCK_SIZE, true);
   }
 }
 
-function createBox(game, x, y, name){
-  var box = game.add.sprite(x, y, name);
+function createBox(game, x, y, building){
+  var box;
+  if(building){
+    var frame = Math.round(Math.random()*4);
+    box = game.add.sprite(x+BLOCK_SIZE/2, y+BLOCK_SIZE/2, 'building', frame);
+    box.angle = ANGLES[Math.floor(Math.random()*ANGLES.length)];
+  } else {
+    box = game.add.sprite(x+BLOCK_SIZE/2, y+BLOCK_SIZE/2, 'cloud');
+  }
+  box.anchor.setTo(0.5, 0.5);
   game.physics.arcade.enable(box);
   box.body.immovable = true;
   box.baseSpeed = -200;//-200

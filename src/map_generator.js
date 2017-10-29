@@ -45,9 +45,9 @@ function adjustLimits(game) {
  */
 function generateColumns(game) {
   for(var i = 0; i < game.upperLevel; i++) {
-    createBox(game, game.width + SPAWN_OFFSET,i*BLOCK_SIZE, 'cloud');
+    createBox(game, game.width + SPAWN_OFFSET,i*BLOCK_SIZE, false);
   }
   for(var i = 0; i < game.lowerLevel; i++) {
-    createBox(game, game.width + SPAWN_OFFSET,game.height-i*BLOCK_SIZE-BLOCK_SIZE, 'building');
+    createBox(game, game.width + SPAWN_OFFSET,game.height-i*BLOCK_SIZE-BLOCK_SIZE, true);
   }
 }

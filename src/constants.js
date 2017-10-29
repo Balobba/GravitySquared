@@ -10,3 +10,4 @@ var SPAWN_OFFSET = 200;
 
 var MAX_PLAYERS = 4;
 var MIN_PLAYERS = 2;
+var ANGLES = [0, 90, 180, 270];
