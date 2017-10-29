@@ -6,15 +6,17 @@ function preloadImages(game){
   /*
   * Images
   */
-  game.load.image('swap', 'assets/powerup_swap.png');
-
-
-
 
   game.load.image('player0', 'assets/player0.png');
   game.load.image('player1', 'assets/player1.png');
   game.load.image('player2', 'assets/player2.png');
   game.load.image('player3', 'assets/player3.png');
+  game.load.image('player4', 'assets/player4.png');
+  game.load.image('player5', 'assets/player5.png');
+  game.load.image('player6', 'assets/player6.png');
+  game.load.image('player7', 'assets/player7.png');
+  game.load.image('player8', 'assets/player8.png');
+  game.load.image('player9', 'assets/player9.png');
 
   game.load.image('cloud', 'assets/cloud.png');
   game.load.image('HUD', 'assets/HUD.png');
@@ -23,6 +25,7 @@ function preloadImages(game){
 * Spritesheet
 */
 
+game.load.spritesheet('swap', 'assets/powerup_swap.png', 32, 32, 9);
 game.load.spritesheet('boost', 'assets/powerup_boost.png', 32, 32, 6);
 game.load.spritesheet('shockwave', 'assets/powerup_shockwave.png', 32, 32, 10);
 game.load.spritesheet('tnt', 'assets/powerup_tnt.png', 32, 32, 2);

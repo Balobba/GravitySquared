@@ -6,6 +6,12 @@ function menustart_preload(game){
   game.load.image('player1', 'assets/player1.png');
   game.load.image('player2', 'assets/player2.png');
   game.load.image('player3', 'assets/player3.png');
+  game.load.image('player4', 'assets/player4.png');
+  game.load.image('player5', 'assets/player5.png');
+  game.load.image('player6', 'assets/player6.png');
+  game.load.image('player7', 'assets/player7.png');
+  game.load.image('player8', 'assets/player8.png');
+  game.load.image('player9', 'assets/player9.png');
 
   // placeholder for buttons
   game.load.image('button', 'assets/button.png');
@@ -27,7 +33,7 @@ function menustart_create(game){
   // Add static text
   game.title = game.add.text(30, 5, 'Menu', game.styleTitle);
   game.playerText = game.add.text(30, 45, 'Players: ' + activePlayers, game.styleTitle);
-  
+
   // Button to add one player
   game.playersAdd = game.add.button(210, 46, 'button'
     , function() {
@@ -85,11 +91,11 @@ function addPlayer(game, index) {
   player.buttonUp = game.add.button(stat.coords.x + 40, stat.coords.y, 'button'
     , function() {
       stat.imageIndex++;
-      stat.imageIndex = Math.min(stat.imageIndex, 3);
+      stat.imageIndex = Math.min(stat.imageIndex, playerNames.length-1);
       player.icon.loadTexture(playerNames[stat.imageIndex]);
     }, this, 2, 1, 0);
   player.buttonUp.anchor.setTo(0.5, 0.5);
-  
+
   // Display the image of choice
   player.icon = game.add.sprite(stat.coords.x , stat.coords.y, playerNames[stat.imageIndex]);
   player.icon.anchor.setTo(0.5, 0.5);
@@ -102,7 +108,7 @@ function addPlayer(game, index) {
  * Controlled by buttons
  */
 function removePlayer(game) {
-  var player = game.players[game.players.length - 1]; 
+  var player = game.players[game.players.length - 1];
   player.icon.destroy();
   player.buttonDown.destroy();
   player.buttonUp.destroy();

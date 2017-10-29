@@ -144,7 +144,7 @@ function generatePowerup(game) {
       addTNTAnimation(game, powerup);
     } else if (rand < 0.50) {
       powerup = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'swap');
-      powerup.type = powerupEnum.SWAP;
+      addSwapAnimation(game, powerup);
     } else if (rand < 0.75) {
       powerup = game.add.sprite(game.width+SPAWN_OFFSET, y*BLOCK_SIZE, 'boost');
       addBoostAnimation(game, powerup);
@@ -163,6 +163,13 @@ function addTNTAnimation(game, powerup){
   powerup.type = powerupEnum.TNT;
   powerup.animations.add('tnt', [0,1]);
   powerup.animations.play('tnt', 2, true);
+
+}
+
+function addSwapAnimation(game, powerup){
+  powerup.type = powerupEnum.SWAP;
+  powerup.animations.add('swap', [0,1,2,3,4,5,6,7,8]);
+  powerup.animations.play('swap', 20, true);
 
 }
 
