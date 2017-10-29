@@ -16,7 +16,7 @@ function createState(game){
   game.hudGroup.add(hud);
 
   //background
-  game.stage.backgroundColor = "#1FFFFF"; //Needs to be replaced with image later!
+  game.add.image(game.world.centerX, game.world.centerY, 'background').anchor.set(0.5);
 
   // create players
   // TODO do this more general

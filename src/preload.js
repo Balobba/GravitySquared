@@ -20,6 +20,7 @@ function preloadImages(game){
 
   game.load.image('cloud', 'assets/cloud.png');
   game.load.image('HUD', 'assets/HUD.png');
+  game.load.image('background', 'assets/background.png');
 
 /*
 * Spritesheet
