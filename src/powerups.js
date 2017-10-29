@@ -6,7 +6,7 @@ function usePowerUp(game, player) {
   if(player.powerup === powerupEnum.TNT) {
     tnt(game,player.body.x, player.body.y);
   } else if(player.powerup === powerupEnum.SWAP) {
-    swap(game, player);
+    startSwap(game, player);
   } else if(player.powerup === powerupEnum.BOOST) {
     boost(game,player);
   } else if(player.powerup === powerupEnum.SHOCKWAVE) {
@@ -23,7 +23,8 @@ function tnt(game,x, y) {
 
   var tnt = game.add.sprite(x, y, 'tnt_active');
   tnt.animations.add('boom', [0,1,2,3,4,5,6,7,8,9,10,11]);
-  tnt.animations.play('boom', 40, false, function(){tnt.destroy();});
+  tnt.animations.play('boom', 40, false);
+  tnt.animations.currentAnim.onComplete.add(function(){tnt.destroy();}, this);
   game.physics.arcade.enable(tnt);
   tnt.baseSpeed = -200;
   tnt.speedConst = -1;
@@ -64,7 +65,7 @@ function boost(game, player) {
 /*
 * Swap powerup
 */
-function swap(game, player) {
+function startSwap(game, player) {
 
   var swapCandidates = [];
 
@@ -76,29 +77,61 @@ function swap(game, player) {
   });
   var otherPlayer = swapCandidates[Math.floor(Math.random()*swapCandidates.length)];
 
-  // Save player coords
-  var x = player.body.x;
-  var y = player.body.y;
 
-  // Swap coordinates
-  player.x = otherPlayer.body.x;
-  player.y = otherPlayer.body.y;
-  otherPlayer.x = x;
-  otherPlayer.y = y;
+  //Active animations on player
 
-  // Remove any velocity
-  otherPlayer.body.gravity.y = 0;
-  otherPlayer.body.velocity.x = 0;
-  otherPlayer.body.velocity.y = 0;
-  player.body.gravity.y = 0;
-  player.body.velocity.x = 0;
-  player.body.velocity.y = 0;
+  var swapPlayer = game.add.sprite(0, 0, 'swap_active_pink');
+  swapPlayer.animations.add('swapP', [0,1,2,3,4,5,6,6,6,6,5,4,3,2,1,0]);
+  swapPlayer.animations.play('swapP', 10, false,function(){swapPlayer.destroy();});
+  game.physics.arcade.enable(swapPlayer);
+  swapPlayer.powerupType = powerupEnum.SWAP;
+  swapPlayer.anchor.setTo(0.5,0.5);
+  player.addChild(swapPlayer);
 
-  // Check if gravity needs to change
-  if(player.dir !== otherPlayer.dir) {
-    changeGravity(player, false);
-    changeGravity(otherPlayer, false);
-  }
+  //Activate animations on enemy
+
+  var swapEnemy = game.add.sprite(0, 0, 'swap_active_turquoise');
+  swapEnemy.animations.add('swapE', [0,1,2,3,4,5,6,6,6,6,5,4,3,2,1,0]);
+  swapEnemy.animations.play('swapE', 10, false);
+  swapEnemy.animations.currentAnim.onComplete.add(function(){
+    swap(game, player, otherPlayer);
+    swapEnemy.destroy();
+  }, this);
+  game.physics.arcade.enable(swapEnemy);
+  swapEnemy.powerupType = powerupEnum.SWAP;
+  swapEnemy.anchor.setTo(0.5,0.5);
+
+  otherPlayer.addChild(swapEnemy);
+
+}
+
+
+function swap(game, player, otherPlayer){
+
+    // Save player coords
+    var x = player.body.x;
+    var y = player.body.y;
+
+    // Swap coordinates
+    player.x = otherPlayer.body.x;
+    player.y = otherPlayer.body.y;
+    otherPlayer.x = x;
+    otherPlayer.y = y;
+
+    // Remove any velocity
+    otherPlayer.body.gravity.y = 0;
+    otherPlayer.body.velocity.x = 0;
+    otherPlayer.body.velocity.y = 0;
+    player.body.gravity.y = 0;
+    player.body.velocity.x = 0;
+    player.body.velocity.y = 0;
+
+    // Check if gravity needs to change
+    if(player.dir !== otherPlayer.dir) {
+      changeGravity(player, false);
+      changeGravity(otherPlayer, false);
+    }
+
 }
 
 /*
@@ -121,7 +154,8 @@ function shockwave(game, player) {
   shockwave.anchor.setTo(0.5, 0.5);
   shockwave.scale.setTo(4,4);
   shockwave.animations.add('blam', [0,1,2,3,4,5,6,7,8,9,10,11,12,13]);
-  shockwave.animations.play('blam', 160, false, function(){shockwave.destroy();});
+  shockwave.animations.play('blam', 160, false);
+  shockwave.animations.currentAnim.onComplete.add(function(){shockwave.destroy();}, this);
   game.physics.arcade.enable(shockwave);
   shockwave.powerupType = powerupEnum.SHOCKWAVE;
 

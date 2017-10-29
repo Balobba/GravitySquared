@@ -34,8 +34,8 @@ game.load.spritesheet('tnt', 'assets/powerup_tnt.png', 32, 32, 2);
 game.load.spritesheet('boost_active', 'assets/powerup_boost_active.png', 96, 32, 2);
 game.load.spritesheet('tnt_active', 'assets/powerup_tnt_active.png', 96, 96, 11);
 game.load.spritesheet('shockwave_active', 'assets/powerup_shockwave_active.png', 96, 96, 14);
-game.load.spritesheet('swap_active_blue', 'assets/powerup_swap_active_blue.png', 96, 96, 7);
-game.load.spritesheet('swap_active_orange', 'assets/powerup_swap_active_orange.png',96, 96, 7);
+game.load.spritesheet('swap_active_turquoise', 'assets/powerup_swap_active_turquoise.png', 96, 96, 7);
+game.load.spritesheet('swap_active_pink', 'assets/powerup_swap_active_pink.png',96, 96, 7);
 
 game.load.spritesheet('pickup', 'assets/powerup_pickup.png', 96, 96, 5);
 game.load.spritesheet('building', 'assets/building.png', 32, 32, 5);
