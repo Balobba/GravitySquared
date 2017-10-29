@@ -29,6 +29,7 @@ game.load.spritesheet('boost', 'assets/powerup_boost.png', 32, 32, 6);
 game.load.spritesheet('shockwave', 'assets/powerup_shockwave.png', 32, 32, 10);
 game.load.spritesheet('tnt', 'assets/powerup_tnt.png', 32, 32, 2);
 
+game.load.spritesheet('shield', 'assets/shield.png', 48, 48, 9);
 
 game.load.spritesheet('boost_active', 'assets/powerup_boost_active.png', 96, 32, 2);
 game.load.spritesheet('tnt_active', 'assets/powerup_tnt_active.png', 96, 96, 11);

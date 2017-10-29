@@ -2,10 +2,10 @@
  * Keybindings for the players
  */
 var keyBindings = [
-  {g:Phaser.Keyboard.Q, w: Phaser.Keyboard.A},
-  {g:Phaser.Keyboard.P, w: Phaser.Keyboard.L},
-  {g:Phaser.Keyboard.N, w: Phaser.Keyboard.M},
-  {g:Phaser.Keyboard.C, w: Phaser.Keyboard.V}];
+  {g:Phaser.Keyboard.Q, w: Phaser.Keyboard.W, s: Phaser.Keyboard.E},
+  {g:Phaser.Keyboard.I, w: Phaser.Keyboard.O, s: Phaser.Keyboard.P},
+  {g:Phaser.Keyboard.B, w: Phaser.Keyboard.N, s: Phaser.Keyboard.M},
+  {g:Phaser.Keyboard.X, w: Phaser.Keyboard.C, s: Phaser.Keyboard.V}];
 
 /*
  * Enum for player directions
@@ -22,7 +22,8 @@ powerupEnum = {
   TNT : 0,
   BOOST : 1,
   SWAP : 2,
-  SHOCKWAVE : 3
+  SHOCKWAVE : 3,
+  SHIELD : 4
 }
 
 function drawHud(game) {
@@ -30,10 +31,14 @@ function drawHud(game) {
 
   for(var i = 0; i < game.playerGroup.length; i++) {
     var p = game.playerGroup.getAt(i);
-    p.text = game.add.text(1, 64 + i*128, 'Player ' + (i+1), style);
-    p.icon = game.add.sprite(16, 100 + i*128, playerNames[playerStat[i].imageIndex]);
-    p.hudY = 144 + i * 128;
+    p.text = game.add.text(1, 12 + i*135, 'Player ' + (i+1), style);
+    p.icon = game.add.sprite(16, 40 + i*135, playerNames[playerStat[i].imageIndex]);
+    p.shieldIcon = game.add.sprite(16, 112 + i*135,'shield', 5);
+    p.shieldIcon.scale.setTo(0.7, 0.7);
+    p.shieldIcon.maxHeight = p.shieldIcon.height;
+    p.hudY = 76 + i * 135;
     game.hudGroup.add(p.text);
+    game.hudGroup.add(p.shieldIcon);
     game.hudGroup.add(p.icon);
   }
 }

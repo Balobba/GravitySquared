@@ -79,29 +79,33 @@ function createBox(game, x, y, building){
     game.boxGroup.add(box);
   }
 
-  function createPlayer(game, x, y, gravity, dir, imageIndex){
-    var player = game.add.sprite(x, y, playerNames[imageIndex]);
-    game.physics.arcade.enable(player);
-    player.scale.setTo(0.8, 0.8);
-    player.anchor.setTo(0.5, 0.5);
-    player.speedConst = 1;//1
-    player.baseSpeed = 200;//200
-    player.powerup = null; //CAN BE EDITED FOR TESTING PURPOSES
-    player.powerupIcon = null;
+function createPlayer(game, x, y, gravity, dir, imageIndex){
+  var player = game.add.sprite(x, y, playerNames[imageIndex]);
+  game.physics.arcade.enable(player);
+  player.scale.setTo(0.8, 0.8);
+  player.anchor.setTo(0.5, 0.5);
+  player.speedConst = 1;
+  player.baseSpeed = 200;
+  player.shieldMaxDuration = 200;
+  player.shieldDuration = player.shieldMaxDuration;   
+  player.shield = null;
+  player.activeShield = false;
+  player.powerup = null; //CAN BE EDITED FOR TESTING PURPOSES
+  player.powerupIcon = null;
 
     player.body.gravity.y = gravity;
     player.body.friction.y = 0;
     player.dir = dir;
 
     setGravity(player);
+  player.keyG = game.input.keyboard.addKey(keyBindings[game.playerGroup.length].g);
+  player.keyW = game.input.keyboard.addKey(keyBindings[game.playerGroup.length].w);
+  player.keyS = game.input.keyboard.addKey(keyBindings[game.playerGroup.length].s);
 
-    player.keyG = game.input.keyboard.addKey(keyBindings[game.playerGroup.length].g);
-    player.keyW = game.input.keyboard.addKey(keyBindings[game.playerGroup.length].w);
-
-    player.keyG.onDown.add(function(){changeGravity(player, true)}, this);
-    player.keyW.onDown.add(function(){usePowerUp(game,player)}, this);
-    player.index = game.playerGroup.length;
-
-    game.playerGroup.add(player);
+  player.keyG.onDown.add(function(){changeGravity(player, true)}, this);
+  player.keyW.onDown.add(function(){usePowerUp(game,player)}, this);
+  player.keyS.onDown.add(function(){shield(game,player)}, this);
+  player.index = game.playerGroup.length;
+  game.playerGroup.add(player);
 
   }

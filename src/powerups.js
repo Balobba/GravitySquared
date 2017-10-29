@@ -1,7 +1,7 @@
 /*
-* Called when player press powerup button
-* Perform powerup
-*/
+ * Called when player press powerup button
+ * Perform powerup
+ */
 function usePowerUp(game, player) {
   if(player.powerup === powerupEnum.TNT) {
     tnt(game,player.body.x, player.body.y);
@@ -17,8 +17,8 @@ function usePowerUp(game, player) {
 
 
 /*
-* TNT powerup
-*/
+ * TNT powerup
+ */
 function tnt(game,x, y) {
 
   var tnt = game.add.sprite(x, y, 'tnt_active');
@@ -43,8 +43,8 @@ function tnt(game,x, y) {
 
 
 /*
-* Boost powerup
-*/
+ * Boost powerup
+ */
 function boost(game, player) {
 
   var boost = game.add.sprite(-96, 0, 'boost_active');
@@ -61,10 +61,32 @@ function boost(game, player) {
   player.boostDuration = 50;
 }
 
+/*
+ * Activate shield
+ */
+function shield(game, player) {
+  if(player.shieldDuration >= player.shieldMaxDuration){
+
+    player.shield = game.add.sprite(0, 0, 'shield', 0);
+    player.shield.animations.add('start', [0,1,2,3,4]);
+    player.shield.animations.add('loop', [5,6,7,8]);
+    player.shield.animations.getAnimation('start').onComplete.add(function() {
+      player.shield.animations.play('loop', 5, true);
+      player.activeShield = true;
+    }, this);
+    player.shield.animations.play('start', 10, false);
+    game.physics.arcade.enable(player.shield);
+    player.shield.powerupType = powerupEnum.SHIELD;
+    player.shield.anchor.setTo(0.5,0.5);
+    player.addChild(player.shield);
+  }
+}
+
+
 
 /*
-* Swap powerup
-*/
+ * Swap powerup
+ */
 function startSwap(game, player) {
 
   var swapCandidates = [];
@@ -108,6 +130,8 @@ function startSwap(game, player) {
 
 function swap(game, player, otherPlayer){
 
+  if(!player.activeShield && !otherPlayer.activeShield){
+
     // Save player coords
     var x = player.body.x;
     var y = player.body.y;
@@ -131,15 +155,16 @@ function swap(game, player, otherPlayer){
       changeGravity(player, false);
       changeGravity(otherPlayer, false);
     }
+  }
 
 }
 
 /*
-* Shockwave powerup
-*/
+ * Shockwave powerup
+ */
 function shockwave(game, player) {
   game.playerGroup.forEach(function(p2) {
-    if(p2 !== player){
+    if(p2 !== player && !p2.activeShield){
       var dist = Math.sqrt(Math.pow(player.body.x-p2.body.x, 2) + Math.pow(player.body.y-p2.body.y,2));
       var angle = Math.atan2(player.body.x - p2.body.x,player.body.y - p2.body.y);
       if(dist < 200){

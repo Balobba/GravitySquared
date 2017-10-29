@@ -12,6 +12,7 @@ function updateState(game){
       });
     });
     updatePlayerSpeed(p);
+    updatePlayerShield(p);
     setGravity(p);
     game.physics.arcade.collide(p, game.border);
     p.collide = false;
@@ -42,6 +43,7 @@ function updateState(game){
       if(p.icon)p.icon.destroy();
       if(p.powerupIcon)p.powerupIcon.destroy();
       deathAnimaton(game, p);
+      p.shieldIcon.destroy();
       p.destroy();
     }
   });
@@ -70,6 +72,7 @@ function updateHud(game) {
   for(var i = 0; i < game.playerGroup.length; i++){
     var p = game.playerGroup.getAt(i);
     var name;
+    p.shieldIcon.height = p.shieldIcon.maxHeight*(p.shieldDuration/p.shieldMaxDuration);
     if(p.powerupIcon) p.powerupIcon.destroy();
     if(p.powerup != null) {
       if(p.powerup === powerupEnum.TNT) {
@@ -149,5 +152,19 @@ function sortGame(game) {
   game.world.bringToTop(game.playerGroup);
   game.world.bringToTop(game.boxGroup);
   game.world.bringToTop(game.powerUpGroup);
+  game.world.bringToTop(game.animationGroup);
   game.world.bringToTop(game.hudGroup);
+}
+
+function updatePlayerShield(p){
+  if(p.shield != null) {
+    p.shieldDuration--;
+    if(p.shieldDuration < 0) {
+      p.shield.destroy();
+      p.shield = null;
+      p.activeShield = false;
+    }
+  } else if(p.shieldDuration < p.shieldMaxDuration) {
+    p.shieldDuration += 0.5;
+  }
 }
