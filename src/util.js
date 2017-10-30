@@ -26,6 +26,23 @@ powerupEnum = {
   SHIELD : 4
 }
 
+/*
+ * Creates text
+ * returns a text object
+ */
+function createText(text, size, x, y) {
+  var style = { font: size+"px Arial", fill: "#ffffff", align: "center", fontWeight: 'bold', stroke: '#000000', strokeThickness: 4 };
+  var textWithSpaces = '';
+  for(var i = 0; i < text.length-1; i++){
+    textWithSpaces += text[i] + ' ';
+  }
+  if(text.length)
+    textWithSpaces += text[text.length - 1];
+  return game.add.text(x, y, textWithSpaces, style);
+}
+
+
+
 function drawHud(game) {
   var style = { font: "15px Arial", fill: "#ffffff", align: "center", fontWeight: 'bold', stroke: '#000000', strokeThickness: 4 };
 
