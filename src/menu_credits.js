@@ -4,8 +4,8 @@
 function credits_preload(game){
 
 
-  // placeholder for buttons
   game.load.image('buttonback', 'assets/buttonback.png');
+  game.load.image('background', 'assets/menu_background.png');
 }
 
 /*
@@ -13,7 +13,7 @@ function credits_preload(game){
  */
 function credits_create(game){
   // set background color
-  game.stage.backgroundColor = "#7443B6";
+  game.add.image(game.world.centerX, game.world.centerY, 'background').anchor.set(0.5);
 
   game.creditsTitle = createText('Created by:', 40, game.width/2, game.height*1/10);
   game.creditsTitle.anchor.setTo(0.5,0.5);

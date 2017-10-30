@@ -10,8 +10,8 @@ function menustart_preload(game){
   game.load.image('player5', 'assets/player5.png');
   game.load.image('player6', 'assets/player6.png');
   game.load.image('player7', 'assets/player7.png');
+  game.load.image('background', 'assets/menu_background.png');
 
-  // placeholder for buttons
   game.load.image('button', 'assets/button.png');
   game.load.image('buttonstart', 'assets/buttonstart.png');
   game.load.image('buttonback', 'assets/buttonback.png');
@@ -23,7 +23,7 @@ function menustart_preload(game){
  */
 function menustart_create(game){
   // set background color
-  game.stage.backgroundColor = "#7443B6";
+  game.add.image(game.world.centerX, game.world.centerY, 'background').anchor.set(0.5);
 
   game.players = [];
 

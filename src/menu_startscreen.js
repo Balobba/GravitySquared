@@ -3,6 +3,7 @@
  */
 function menuscreen_preload(game){
   game.load.image('player0', 'assets/player0.png');
+  game.load.image('splash', 'assets/splash.png');
 
   // placeholder for buttons
   game.load.image('buttonmultiplayer', 'assets/buttonmultiplayer.png');
@@ -14,8 +15,7 @@ function menuscreen_preload(game){
  */
 function menuscreen_create(game){
   // set background color
-  game.stage.backgroundColor = "#7443B6"; //REPLACE WITH SPLASHSCREEN LATER!
-
+  game.add.image(game.world.centerX, game.world.centerY, 'splash').anchor.set(0.5);
 
   // Start game button
 
