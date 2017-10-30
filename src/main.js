@@ -17,23 +17,23 @@ var playerStat = [
   {
     coords: {x: game.width/4, y: game.height*3/8},
     imageIndex: 0,
-    controller: 'Q, W, E'
+    controller: 'Q W E'
   },
   {
-    coords: {x: game.width/4, y: game.height*6/8},
+    coords: {x: game.width+100, y: game.height*3/8},
     imageIndex: 1,
-    controller: 'I, O, P'
+    controller: 'I O P'
   },
 
   {
-    coords: {x: game.width+100, y: game.height*3/8},
+    coords: {x: game.width/4, y: game.height*6/8},
     imageIndex: 2,
-    controller: 'B, N, M'
+    controller: 'B N M'
   },
   {
     coords: {x: game.width+100, y: game.height*6/8},
     imageIndex: 3,
-    controller: 'X, C, V'
+    controller: 'X C V'
   }];
 game.state.add('sandbox', state_sandbox);
 game.state.add('menu_startscreen', state_startscreen);

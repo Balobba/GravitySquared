@@ -28,11 +28,14 @@ function menustart_create(game){
   game.players = [];
 
   // Add static text
-  game.title = createText('Menu',40 ,30,5);
-  game.playerText = createText('Players: ' + activePlayers,20 ,30, 45);
+  game.playerText = createText('Players',30 ,game.width/2, game.height*5/10);
+  game.playerText.anchor.setTo(0.5,0.5);
+
+  game.playerText2 = createText(activePlayers,30 ,game.width/2, game.height*5/10 + 50);
+  game.playerText2.anchor.setTo(0.5,0.5);
 
   // Button to add one player
-  game.playersAdd = game.add.button(210, 46, 'button'
+  game.playersAdd = game.add.button(625, 350, 'button'
     , function() {
       if(activePlayers < MAX_PLAYERS){
         activePlayers++;
@@ -40,10 +43,9 @@ function menustart_create(game){
       }
     }, this, 2, 1, 0);
   game.playersAdd.anchor.setTo(0.5, 0.5);
-  game.playersAdd.angle = 270;
 
   // Button to remove one player
-  game.playersSub = game.add.button(210, 86, 'button'
+  game.playersSub = game.add.button(500, 350, 'button'
     , function() {
       if(activePlayers > MIN_PLAYERS) {
         activePlayers--;
@@ -51,7 +53,7 @@ function menustart_create(game){
       }
     }, this, 2, 1, 0);
   game.playersSub.anchor.setTo(0.5, 0.5);
-  game.playersSub.angle = 90;
+  game.playersSub.angle = 180;
 
   // Init players
   for(var i = 0; i < activePlayers; i++){
@@ -66,6 +68,7 @@ function menustart_create(game){
     }, this, 2, 1, 0);
     game.start.anchor.setTo(0.5, 0.5);
 
+    //Backbutton
   game.back =  game.add.button(game.width/2, game.height*9/10, 'buttonback'
       , function() {
         game.state.start('menu_startscreen');
@@ -136,6 +139,6 @@ function removePlayer(game) {
  * Update function for menu
  */
 function menustart_update(game){
-  game.playerText.text = addSpaces('Players:' + activePlayers);
+  game.playerText2.text = activePlayers;
 
 }
