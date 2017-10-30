@@ -99,11 +99,12 @@ function createPlayer(game, x, y, gravity, dir, imageIndex){
   player.activeShield = false;
   player.powerup = null; //CAN BE EDITED FOR TESTING PURPOSES
   player.powerupIcon = null;
-
   player.body.gravity.y = gravity;
   player.body.friction.y = 0;
   player.dir = dir;
-
+  player.body.gravity.y = gravity;
+  player.body.friction.y = 0;
+  player.dir = dir;
   setGravity(player);
   player.keyG = game.input.keyboard.addKey(keyBindings[game.playerGroup.length].g);
   player.keyW = game.input.keyboard.addKey(keyBindings[game.playerGroup.length].w);

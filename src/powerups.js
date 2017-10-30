@@ -82,13 +82,10 @@ function shield(game, player) {
   }
 }
 
-
-
 /*
  * Swap powerup
  */
 function startSwap(game, player) {
-
   var swapCandidates = [];
 
   // pick a random player to swap with
@@ -129,16 +126,14 @@ function startSwap(game, player) {
 
 
 function swap(game, player, otherPlayer){
-
   if(!player.activeShield && !otherPlayer.activeShield){
-
     // Save player coords
-    var x = player.body.x;
-    var y = player.body.y;
+    var x = player.x;
+    var y = player.y;
 
     // Swap coordinates
-    player.x = otherPlayer.body.x;
-    player.y = otherPlayer.body.y;
+    player.x = otherPlayer.x;
+    player.y = otherPlayer.y;
     otherPlayer.x = x;
     otherPlayer.y = y;
 
@@ -156,7 +151,6 @@ function swap(game, player, otherPlayer){
       changeGravity(otherPlayer, false);
     }
   }
-
 }
 
 /*
@@ -222,25 +216,21 @@ function addTNTAnimation(game, powerup){
   powerup.type = powerupEnum.TNT;
   powerup.animations.add('tnt', [0,1]);
   powerup.animations.play('tnt', 2, true);
-
 }
 
 function addSwapAnimation(game, powerup){
   powerup.type = powerupEnum.SWAP;
   powerup.animations.add('swap', [0,1,2,3,4,5,6,7,8]);
   powerup.animations.play('swap', 20, true);
-
 }
 
 function addShockwaveAnimation(game, powerup){
   powerup.type = powerupEnum.SHOCKWAVE;
   powerup.animations.add('shockwave', [0,1,2,3,4,5,6,7,8,9]);
   powerup.animations.play('shockwave', 8, true);
-
 }
 function addBoostAnimation(game, powerup){
   powerup.type = powerupEnum.BOOST;
   powerup.animations.add('boost', [0,1,2,3,4,5]);
   powerup.animations.play('boost', 8, true);
-
 }

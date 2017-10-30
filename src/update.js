@@ -16,6 +16,7 @@ function updateState(game){
     setGravity(p);
     game.physics.arcade.collide(p, game.border);
     p.collide = false;
+
     game.boxGroup.forEach(function(b){
       game.physics.arcade.collide(p, b, function()
         {
