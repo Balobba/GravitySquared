@@ -92,7 +92,7 @@ function createPlayer(game, x, y, gravity, dir, imageIndex){
   player.scale.setTo(0.8, 0.8);
   player.anchor.setTo(0.5, 0.5);
   player.speedConst = 1;
-  player.baseSpeed = 200;
+  player.baseSpeed = 270;
   player.shieldMaxDuration = 200;
   player.shieldDuration = player.shieldMaxDuration;
   player.shield = null;

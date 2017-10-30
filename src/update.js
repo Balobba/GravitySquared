@@ -11,8 +11,8 @@ function updateState(game){
         pu.destroy();
       });
     });
-    updatePlayerSpeed(p);
     updatePlayerShield(p);
+    updatePlayerSpeed(p);
     setGravity(p);
     game.physics.arcade.collide(p, game.border);
     p.collide = false;
@@ -24,16 +24,10 @@ function updateState(game){
           p.collide = true;
         });
     });
+    if(!p.collide && !p.activeShockwave && !p.activeBoost)
+      p.body.velocity.x = (p.baseSpeed + p.speedConst * game.tick)*0.25;
 
-/*
- * Animation update
- */
-    game.animationGroup.forEach(function(a){
-      a.body.velocity.x = a.baseSpeed + a.speedConst*game.tick;
-      if(a.body.x < HUD_WIDTH - BLOCK_SIZE) {
-        a.destroy();
-      }
-    });
+
 
     // remove player if outside world bounds
     if(p.body.x < HUD_WIDTH -BLOCK_SIZE || p.body.x > game.width + BLOCK_SIZE
@@ -49,6 +43,15 @@ function updateState(game){
     }
   });
 
+  /*
+   * Animation update
+   */
+  game.animationGroup.forEach(function(a){
+    a.body.velocity.x = a.baseSpeed + a.speedConst*game.tick;
+    if(a.body.x < HUD_WIDTH - BLOCK_SIZE) {
+      a.destroy();
+    }
+  });
   // check if new blocks needs to be generated
   if(!game.lastBlock || game.lastBlock.body.x < game.width + 170){
     generateBlock(game);
