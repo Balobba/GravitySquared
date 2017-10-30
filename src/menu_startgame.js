@@ -123,6 +123,6 @@ function removePlayer(game) {
  * Update function for menu
  */
 function menustart_update(game){
-  game.playerText.text = 'P l a y e r s : ' + activePlayers;
+  game.playerText.text = addSpaces('Players:' + activePlayers);
 
 }

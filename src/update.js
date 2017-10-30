@@ -158,6 +158,7 @@ function sortGame(game) {
   game.world.bringToTop(game.powerUpGroup);
   game.world.bringToTop(game.animationGroup);
   game.world.bringToTop(game.hudGroup);
+  game.world.bringToTop(game.statusText);
 }
 
 function updatePlayerShield(p){

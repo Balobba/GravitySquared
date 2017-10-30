@@ -38,13 +38,21 @@ powerupEnum = {
  */
 function createText(text, size, x, y) {
   var style = { font: size+"px checkbookregular", fill: "#ffffff", align: "center", fontWeight: 'bold', stroke: '#000000', strokeThickness: 4 };
+
+  return game.add.text(x, y, addSpaces(text), style);
+}
+
+/*
+ * Add spaces between every character of a string
+ */
+function addSpaces(text) {
   var textWithSpaces = '';
   for(var i = 0; i < text.length-1; i++){
     textWithSpaces += text[i] + ' ';
   }
   if(text.length)
     textWithSpaces += text[text.length - 1];
-  return game.add.text(x, y, textWithSpaces, style);
+  return textWithSpaces;
 }
 
 
@@ -87,7 +95,7 @@ function checkGameOver(game) {
   if(game.playerGroup.length <= 1  && !game.gameOver) {
     game.gameOver = true;
     game.time.events.add(Phaser.Timer.SECOND * 3, function() {gameOver(game)}, this);
-    var text = createText('Player ' + (game.playerGroup.getAt(0).index + 1) + ' wins!',64 ,game.width/2-200, game.height/3);
+    game.statusText.text = addSpaces('Player' + (game.playerGroup.getAt(0).index + 1)+' wins!');
   }
 }
 

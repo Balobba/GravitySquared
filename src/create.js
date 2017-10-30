@@ -33,6 +33,7 @@ function createState(game){
   game.keyF.onDown.add(function() {
     game.scale.startFullScreen(false);
   });
+  game.statusText = createText('', 64, game.width/2-200, game.height/3);
 
   drawHud(game);
 
