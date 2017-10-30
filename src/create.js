@@ -60,7 +60,10 @@ function createStartBlocks(game) {
   }
 }
 
-function createBox(game, x, y, building){
+/*
+* Creates the boxes that is displayed on the map.
+*/
+function createBox(game, x, y, building) {
   var box;
   if(building){
     var frame = Math.round(Math.random()*4);
@@ -70,15 +73,19 @@ function createBox(game, x, y, building){
     box = game.add.sprite(x+BLOCK_SIZE/2, y+BLOCK_SIZE/2, 'cloud');
   }
   box.anchor.setTo(0.5, 0.5);
-    game.physics.arcade.enable(box);
-    box.body.immovable = true;
-    box.baseSpeed = -200;//-200
-    box.speedConst = -1;//-1
-    box.body.friction.y = 0;
-    game.lastBlock = box;
-    game.boxGroup.add(box);
-  }
+  game.physics.arcade.enable(box);
+  box.body.immovable = true;
+  box.baseSpeed = -200;//-200
+  box.speedConst = -1;//-1
+  box.body.friction.y = 0;
+  game.lastBlock = box;
+  game.boxGroup.add(box);
+}
 
+/*
+* Creates the player with given coordinates, gravity and direction.
+* It sets initial player parameters.
+*/
 function createPlayer(game, x, y, gravity, dir, imageIndex){
   var player = game.add.sprite(x, y, playerNames[imageIndex]);
   game.physics.arcade.enable(player);
@@ -87,17 +94,17 @@ function createPlayer(game, x, y, gravity, dir, imageIndex){
   player.speedConst = 1;
   player.baseSpeed = 200;
   player.shieldMaxDuration = 200;
-  player.shieldDuration = player.shieldMaxDuration;   
+  player.shieldDuration = player.shieldMaxDuration;
   player.shield = null;
   player.activeShield = false;
   player.powerup = null; //CAN BE EDITED FOR TESTING PURPOSES
   player.powerupIcon = null;
 
-    player.body.gravity.y = gravity;
-    player.body.friction.y = 0;
-    player.dir = dir;
+  player.body.gravity.y = gravity;
+  player.body.friction.y = 0;
+  player.dir = dir;
 
-    setGravity(player);
+  setGravity(player);
   player.keyG = game.input.keyboard.addKey(keyBindings[game.playerGroup.length].g);
   player.keyW = game.input.keyboard.addKey(keyBindings[game.playerGroup.length].w);
   player.keyS = game.input.keyboard.addKey(keyBindings[game.playerGroup.length].s);
