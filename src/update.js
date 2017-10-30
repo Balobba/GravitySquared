@@ -88,7 +88,7 @@ function updateHud(game) {
       } else if(p.powerup === powerupEnum.SWAP) {
         name = 'swap';
       }
-      p.powerupIcon = game.add.sprite(16, p.hudY, name);
+      p.powerupIcon = game.add.sprite(HUD_WIDTH/2-BLOCK_SIZE/2, p.hudY, name);
       game.hudGroup.add(p.powerupIcon);
     }
   }

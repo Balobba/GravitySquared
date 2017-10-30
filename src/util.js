@@ -63,8 +63,8 @@ function drawHud(game) {
   for(var i = 0; i < game.playerGroup.length; i++) {
     var p = game.playerGroup.getAt(i);
     p.text = createText('Player '+(i+1),15 ,1, 12 + i*135);
-    p.icon = game.add.sprite(16, 40 + i*135, playerNames[playerStat[i].imageIndex]);
-    p.shieldIcon = game.add.sprite(16, 112 + i*135,'shield', 5);
+    p.icon = game.add.sprite(HUD_WIDTH/2-BLOCK_SIZE/2, 40 + i*135, playerNames[playerStat[i].imageIndex]);
+    p.shieldIcon = game.add.sprite(HUD_WIDTH/2-BLOCK_SIZE/2, 112 + i*135,'shield', 5);
     p.shieldIcon.scale.setTo(0.7, 0.7);
     p.shieldIcon.maxHeight = p.shieldIcon.height;
     p.hudY = 76 + i * 135;

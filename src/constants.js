@@ -4,7 +4,7 @@
  */
 
 var GRAVITY = 2000;
-var HUD_WIDTH = 64;
+var HUD_WIDTH = 90;
 var BLOCK_SIZE = 32;
 var SPAWN_OFFSET = 200;
 
