@@ -16,6 +16,12 @@ directionEnum = {
 }
 
 /*
+ * Global font
+ */
+
+ var font = 'checkbookregular';
+
+/*
  * Enum for powerups
  */
 powerupEnum = {
@@ -31,7 +37,7 @@ powerupEnum = {
  * returns a text object
  */
 function createText(text, size, x, y) {
-  var style = { font: size+"px Arial", fill: "#ffffff", align: "center", fontWeight: 'bold', stroke: '#000000', strokeThickness: 4 };
+  var style = { font: size+"px checkbookregular", fill: "#ffffff", align: "center", fontWeight: 'bold', stroke: '#000000', strokeThickness: 4 };
   var textWithSpaces = '';
   for(var i = 0; i < text.length-1; i++){
     textWithSpaces += text[i] + ' ';
@@ -44,11 +50,11 @@ function createText(text, size, x, y) {
 
 
 function drawHud(game) {
-  var style = { font: "15px Arial", fill: "#ffffff", align: "center", fontWeight: 'bold', stroke: '#000000', strokeThickness: 4 };
+  var style = { font: "15px "+font, fill: "#ffffff", align: "center", fontWeight: 'bold', stroke: '#000000', strokeThickness: 4 };
 
   for(var i = 0; i < game.playerGroup.length; i++) {
     var p = game.playerGroup.getAt(i);
-    p.text = game.add.text(1, 12 + i*135, 'Player ' + (i+1), style);
+    p.text = createText('Player '+(i+1),15 ,1, 12 + i*135);
     p.icon = game.add.sprite(16, 40 + i*135, playerNames[playerStat[i].imageIndex]);
     p.shieldIcon = game.add.sprite(16, 112 + i*135,'shield', 5);
     p.shieldIcon.scale.setTo(0.7, 0.7);
@@ -81,8 +87,7 @@ function checkGameOver(game) {
   if(game.playerGroup.length <= 1  && !game.gameOver) {
     game.gameOver = true;
     game.time.events.add(Phaser.Timer.SECOND * 3, function() {gameOver(game)}, this);
-    var style = { font: "64px Arial", fill: "#ffffff", align: "center", fontWeight: 'bold', stroke: '#000000', strokeThickness: 10 };
-    var text = game.add.text(game.width/2-200, game.height/3, 'Player ' + (game.playerGroup.getAt(0).index + 1) + ' wins!', style);
+    var text = createText('Player ' + (game.playerGroup.getAt(0).index + 1) + ' wins!',64 ,game.width/2-200, game.height/3);
   }
 }
 

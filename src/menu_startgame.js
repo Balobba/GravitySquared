@@ -24,13 +24,9 @@ function menustart_create(game){
 
   game.players = [];
 
-  // text styles
-  game.styleTitle = { font: "32px Arial", fill: "#ffffff", align: "center", fontWeight: 'bold', stroke: '#000000', strokeThickness: 4 };
-  game.stylePlayer = { font: "15px Arial", fill: "#ffffff", align: "center", fontWeight: 'bold', stroke: '#000000', strokeThickness: 4 };
-
   // Add static text
-  game.title = game.add.text(30, 5, 'Menu', game.styleTitle);
-  game.playerText = game.add.text(30, 45, 'Players: ' + activePlayers, game.styleTitle);
+  game.title = createText('Menu',40 ,30,5);
+  game.playerText = createText('Players: ' + activePlayers,20 ,30, 45);
 
   // Button to add one player
   game.playersAdd = game.add.button(210, 46, 'button'
@@ -117,6 +113,6 @@ function removePlayer(game) {
  * Update function for menu
  */
 function menustart_update(game){
-  game.playerText.text = 'Players: ' + activePlayers;
+  game.playerText.text = 'P l a y e r s : ' + activePlayers;
 
 }
