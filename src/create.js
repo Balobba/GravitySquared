@@ -48,6 +48,8 @@ function createState(game){
   // Used for knowing on which level the map is
   game.upperLevel = 1;
   game.lowerLevel = 1;
+
+  Client.askNewPlayer();
 }
 
 /*

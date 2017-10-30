@@ -22,6 +22,7 @@ function menustart_preload(game){
  * Create menu
  */
 function menustart_create(game){
+  Client.newGame()
   // set background color
   game.stage.backgroundColor = "#7443B6";
 
@@ -32,6 +33,7 @@ function menustart_create(game){
   game.playerText = createText('Players: ' + activePlayers,20 ,30, 45);
 
   // Button to add one player
+  /*
   game.playersAdd = game.add.button(210, 46, 'button'
     , function() {
       if(activePlayers < MAX_PLAYERS){
@@ -41,6 +43,7 @@ function menustart_create(game){
     }, this, 2, 1, 0);
   game.playersAdd.anchor.setTo(0.5, 0.5);
   game.playersAdd.angle = 270;
+  */
 
   // Button to remove one player
   game.playersSub = game.add.button(210, 86, 'button'
