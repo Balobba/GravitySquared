@@ -107,5 +107,5 @@ function setGravity(player){
  * Called when the game is over
  */
 function gameOver(game) {
-  game.state.restart();
+  game.state.start('menu_startgame');
 }

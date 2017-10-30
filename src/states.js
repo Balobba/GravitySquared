@@ -46,3 +46,19 @@ var state_startscreen = {
   render: function () {
   }
 };
+
+var state_credits = {
+  preload: function() {
+    credits_preload(game);
+  },
+  create: function() {
+    credits_create(game);
+  },
+  update: function() {
+    credits_update(game);
+  },
+  shutdown: function() {
+  },
+  render: function () {
+  }
+};

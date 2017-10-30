@@ -13,6 +13,9 @@ function menustart_preload(game){
 
   // placeholder for buttons
   game.load.image('button', 'assets/button.png');
+  game.load.image('buttonstart', 'assets/buttonstart.png');
+  game.load.image('buttonback', 'assets/buttonback.png');
+
 }
 
 /*
@@ -56,11 +59,18 @@ function menustart_create(game){
   }
 
   // Start game button
-  game.start =  game.add.button(game.width/2, game.height - 60, 'button'
+  game.start =  game.add.button(game.width/2, game.height*7/10, 'buttonstart'
     , function() {
       game.state.start('sandbox');
 
     }, this, 2, 1, 0);
+    game.start.anchor.setTo(0.5, 0.5);
+
+  game.back =  game.add.button(game.width/2, game.height*9/10, 'buttonback'
+      , function() {
+        game.state.start('menu_startscreen');
+      }, this, 2, 1, 0);
+      game.back.anchor.setTo(0.5, 0.5);
 }
 
 /*

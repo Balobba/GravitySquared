@@ -5,7 +5,8 @@ function menuscreen_preload(game){
   game.load.image('player0', 'assets/player0.png');
 
   // placeholder for buttons
-  game.load.image('button', 'assets/button.png');
+  game.load.image('buttonmultiplayer', 'assets/buttonmultiplayer.png');
+  game.load.image('buttoncredits', 'assets/buttoncredits.png');
 }
 
 /*
@@ -18,10 +19,17 @@ function menuscreen_create(game){
 
   // Start game button
 
-  game.start =  game.add.button(game.width/2, game.height - 60, 'button'
+  game.multiplayer =  game.add.button(game.width/2, game.height*7/10, 'buttonmultiplayer'
     , function() {
       game.state.start('menu_startgame');
     }, this, 2, 1, 0);
+    game.multiplayer.anchor.setTo(0.5,0.5);
+
+    game.credits =  game.add.button(game.width/2, game.height*9/10, 'buttoncredits'
+      , function() {
+        game.state.start('menu_credits');
+      }, this, 2, 1, 0);
+      game.credits.anchor.setTo(0.5,0.5);
 
 }
 
