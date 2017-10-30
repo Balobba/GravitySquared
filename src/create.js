@@ -88,7 +88,7 @@ function createBox(game, x, y, building) {
 * It sets initial player parameters.
 */
 function createPlayer(game, x, y, gravity, dir, imageIndex){
-  var player = game.add.sprite(x, y, playerNames[imageIndex]);
+  var player = game.add.sprite(x, y, playerAvail[imageIndex].image);
   game.physics.arcade.enable(player);
   player.scale.setTo(0.8, 0.8);
   player.anchor.setTo(0.5, 0.5);

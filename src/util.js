@@ -62,8 +62,8 @@ function drawHud(game) {
 
   for(var i = 0; i < game.playerGroup.length; i++) {
     var p = game.playerGroup.getAt(i);
-    p.text = createText('Player '+(i+1),15 ,1, 12 + i*135);
-    p.icon = game.add.sprite(HUD_WIDTH/2-BLOCK_SIZE/2, 40 + i*135, playerNames[playerStat[i].imageIndex]);
+    p.text = createText(playerAvail[playerStat[i].imageIndex].name,15 ,1, 12 + i*135);
+    p.icon = game.add.sprite(HUD_WIDTH/2-BLOCK_SIZE/2, 40 + i*135, playerAvail[playerStat[i].imageIndex].image);
     p.shieldIcon = game.add.sprite(HUD_WIDTH/2-BLOCK_SIZE/2, 112 + i*135,'shield', 5);
     p.shieldIcon.scale.setTo(0.7, 0.7);
     p.shieldIcon.maxHeight = p.shieldIcon.height;
@@ -95,7 +95,7 @@ function checkGameOver(game) {
   if(game.playerGroup.length <= 1  && !game.gameOver) {
     game.gameOver = true;
     game.time.events.add(Phaser.Timer.SECOND * 3, function() {gameOver(game)}, this);
-    game.statusText.text = addSpaces('Player' + (game.playerGroup.getAt(0).index + 1)+' wins!');
+    game.statusText.text = addSpaces(playerAvail[playerStat[game.playerGroup.getAt(0).index].imageIndex].name+' wins!');
   }
 }
 

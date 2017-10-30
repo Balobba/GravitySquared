@@ -86,7 +86,8 @@ function addPlayer(game, index) {
     , function() {
       stat.imageIndex--;
       stat.imageIndex = Math.max(stat.imageIndex, 0);
-      player.icon.loadTexture(playerNames[stat.imageIndex]);
+      player.icon.loadTexture(playerAvail[stat.imageIndex].image);
+      player.playerName.text = addSpaces(playerAvail[stat.imageIndex].name);
     }, this, 2, 1, 0);
   player.buttonDown.anchor.setTo(0.5, 0.5);
   player.buttonDown.angle = 180;
@@ -95,16 +96,26 @@ function addPlayer(game, index) {
   player.buttonUp = game.add.button(stat.coords.x + 40, stat.coords.y, 'button'
     , function() {
       stat.imageIndex++;
-      stat.imageIndex = Math.min(stat.imageIndex, playerNames.length-1);
-      player.icon.loadTexture(playerNames[stat.imageIndex]);
+      stat.imageIndex = Math.min(stat.imageIndex, playerAvail.length-1);
+      player.icon.loadTexture(playerAvail[stat.imageIndex].image);
+      player.playerName.text = addSpaces(playerAvail[stat.imageIndex].name);
     }, this, 2, 1, 0);
   player.buttonUp.anchor.setTo(0.5, 0.5);
 
   // Display the image of choice
-  player.icon = game.add.sprite(stat.coords.x , stat.coords.y, playerNames[stat.imageIndex]);
+  player.icon = game.add.sprite(stat.coords.x , stat.coords.y, playerAvail[stat.imageIndex].image);
   player.icon.anchor.setTo(0.5, 0.5);
 
+  //Display the controller for each player
+  player.controllerText = createText(stat.controller, 20, stat.coords.x, stat.coords.y+50);
+  player.controllerText.anchor.setTo(0.5, 0.5);
+
+  //Display the player character names
+  player.playerName = createText(playerAvail[stat.imageIndex].name, 20, stat.coords.x, stat.coords.y-50);
+  player.playerName.anchor.setTo(0.5, 0.5);
   game.players.push(player);
+
+
 }
 
 /*
@@ -116,6 +127,8 @@ function removePlayer(game) {
   player.icon.destroy();
   player.buttonDown.destroy();
   player.buttonUp.destroy();
+  player.controllerText.destroy();
+  player.playerName.destroy();
   game.players.splice(game.players.length - 1, 1);
 }
 
