@@ -105,6 +105,7 @@ function startSwap(game, player) {
   game.physics.arcade.enable(swapPlayer);
   swapPlayer.powerupType = powerupEnum.SWAP;
   swapPlayer.anchor.setTo(0.5,0.5);
+  if(player)
   player.addChild(swapPlayer);
 
   //Activate animations on enemy
@@ -120,13 +121,14 @@ function startSwap(game, player) {
   swapEnemy.powerupType = powerupEnum.SWAP;
   swapEnemy.anchor.setTo(0.5,0.5);
 
+  if(otherPlayer)
   otherPlayer.addChild(swapEnemy);
 
 }
 
 
 function swap(game, player, otherPlayer){
-  if(!player.activeShield && !otherPlayer.activeShield){
+  if(player && otherPlayer && !player.activeShield && !otherPlayer.activeShield){
     // Save player coords
     var x = player.x;
     var y = player.y;
